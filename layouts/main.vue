@@ -7,7 +7,7 @@
         id="main-content"
         class="relative h-full w-full overflow-y-auto bg-gray-50 lg:ml-64"
       >
-        <main>
+        <main class="p-8">
           <slot />
         </main>
         <footer

@@ -1,7 +1,9 @@
 <template>
   <NuxtLayout name="main">
-    <div class="p-8">
-      <h3 class="mb-2 text-xl font-bold text-gray-900">Bank Accounts</h3>
+    <div>
+      <h1 class="text-xl font-semibold text-gray-800 sm:text-2xl">
+        Bank Accounts
+      </h1>
       <div class="shadow-xs w-full overflow-hidden rounded-lg">
         <div class="w-full overflow-x-auto">
           <table class="whitespace-no-wrap w-full">

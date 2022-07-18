@@ -50,7 +50,7 @@
             />
             <span
               class="self-center whitespace-nowrap font-serif tracking-widest"
-              >Pay<span class="text-cyan-700">Local</span></span
+              >Invoice<span class="text-cyan-700">Station</span></span
             >
           </NuxtLink>
           <form action="#" method="GET" class="hidden lg:block lg:pl-32">
@@ -121,7 +121,7 @@
             </div>
             <div
               id="dropdown-2"
-              class="z-50 my-4 block hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow-lg shadow-gray-300"
+              class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow-lg shadow-gray-300"
               style="
                 position: absolute;
                 inset: 0px auto auto 0px;

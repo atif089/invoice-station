@@ -1,8 +1,8 @@
 <template>
   <NuxtLayout name="main">
-    <div class="grid grid-cols-1 p-8 px-4 pt-6 xl:grid-cols-3 xl:gap-6">
+    <div class="grid grid-cols-1 xl:grid-cols-3 xl:gap-6">
       <div class="col-span-full mb-4 xl:mb-0">
-        <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">
+        <h1 class="text-xl font-semibold text-gray-800 sm:text-2xl">
           Profile settings
         </h1>
       </div>
@@ -460,7 +460,7 @@
                   name="first-name"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="Bonnie"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -475,7 +475,7 @@
                   name="last-name"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="Green"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -490,7 +490,7 @@
                   name="country"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="United States"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -505,7 +505,7 @@
                   name="city"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="e.g. San Francisco"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -520,7 +520,7 @@
                   name="adress"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="e.g. California"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -535,7 +535,7 @@
                   name="email"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="example@company.com"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -550,7 +550,7 @@
                   name="phone-number"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="e.g. +(12)3456 789"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -565,7 +565,7 @@
                   name="birthday"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="15/08/1990"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -580,7 +580,7 @@
                   name="organization"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="Company Name"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -595,7 +595,7 @@
                   name="role"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="React Developer"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -610,7 +610,7 @@
                   name="department"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="Development"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -625,7 +625,7 @@
                   name="zip-code"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="123456"
-                  required=""
+                  required
                 />
               </div>
               <div class="sm:col-full col-span-6">
@@ -655,7 +655,7 @@
                   name="current-password"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="••••••••"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -670,7 +670,7 @@
                   name="new-password"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="••••••••"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-6 sm:col-span-3">
@@ -685,7 +685,7 @@
                   name="confirm-password"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="••••••••"
-                  required=""
+                  required
                 />
               </div>
               <div class="col-span-full">

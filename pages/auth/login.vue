@@ -12,7 +12,7 @@
         alt="Windster Logo"
       />
       <span class="self-center whitespace-nowrap font-serif tracking-widest"
-        >Pay<span class="links">Local</span></span
+        >Invoice<span class="links">Station</span></span
       >
     </NuxtLink>
     <!-- Card -->

@@ -11,9 +11,9 @@
         class="mr-2 h-6"
         alt="Windster Logo"
       />
-      <span class="self-center whitespace-nowrap font-serif tracking-widest"
-        >Pay<span class="links">Local</span></span
-      >
+      <p class="self-center whitespace-nowrap font-serif tracking-widest">
+        Invoice<span class="links">Station</span>
+      </p>
     </NuxtLink>
     <!-- Card -->
     <div
