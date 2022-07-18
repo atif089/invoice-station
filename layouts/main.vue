@@ -122,9 +122,9 @@
           </div>
         </footer>
         <p class="my-10 text-center text-sm text-gray-500">
-          © 2019-2021
-          <a href="" class="hover:underline" target="_blank">PayLocal</a>. All
-          rights reserved.
+          © 2022-2024
+          <a href="" class="hover:underline" target="_blank">Invoice Station</a
+          >. All rights reserved.
         </p>
       </div>
     </div>

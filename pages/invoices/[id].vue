@@ -1,5 +1,49 @@
 <template>
   <NuxtLayout name="main">
+    <div
+      class="items-center space-y-4 sm:inline-flex sm:space-x-4 sm:space-y-0"
+    >
+      <div>
+        <a
+          href="#"
+          class="flex items-center rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 sm:inline-flex"
+        >
+          <svg
+            class="mr-2 -ml-1 h-6 w-6"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          Download Invoice
+        </a>
+      </div>
+      <div>
+        <a
+          href="#"
+          class="transition-transformsm:w-auto inline-flex w-full items-center justify-center rounded-lg border border-gray-300 bg-white py-2 px-3 text-center text-sm font-medium text-gray-900 hover:scale-[1.02] hover:bg-gray-100"
+        >
+          <svg
+            class="mr-2 -ml-1 h-6 w-6"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          Print
+        </a>
+      </div>
+    </div>
     <div class="grid grid-cols-12 gap-4">
       <div
         class="col-span-12 max-w-[880px] rounded-2xl bg-white p-4 shadow-lg shadow-gray-200 lg:my-6 2xl:col-span-8 2xl:col-start-3"

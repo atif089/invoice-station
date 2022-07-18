@@ -198,7 +198,7 @@
                   id="first-name"
                   type="text"
                   name="first-name"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="Bonnie"
                   required
                 />
@@ -213,7 +213,7 @@
                   id="organization"
                   type="text"
                   name="organization"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="Company Name"
                   required
                 />
@@ -228,7 +228,7 @@
                   id="department"
                   type="text"
                   name="department"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="Development"
                   required
                 />
@@ -243,7 +243,7 @@
                   id="city"
                   type="text"
                   name="city"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="e.g. San Francisco"
                   required
                 />
@@ -260,7 +260,7 @@
                   id="last-name"
                   type="email"
                   name="last-name"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="Green"
                   required
                 />
@@ -275,7 +275,7 @@
                   id="role"
                   type="text"
                   name="role"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="React Developer"
                   required
                 />
@@ -290,7 +290,7 @@
                   id="country"
                   type="text"
                   name="country"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="United States"
                   required
                 />
@@ -305,7 +305,7 @@
                   id="email"
                   type="email"
                   name="email"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="example@company.com"
                   required
                 />
@@ -321,7 +321,7 @@
                 id="info"
                 name="info"
                 rows="14"
-                class="block w-full rounded-lg border border-gray-300 p-4 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                class="block w-full rounded-lg border border-gray-300 p-4 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                 placeholder="Receipt Info (optional)"
               ></textarea>
             </div>
@@ -348,7 +348,7 @@
                 id="full-name"
                 type="text"
                 name="full-name"
-                class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                 placeholder="Enter your name"
                 required
               />
@@ -363,7 +363,7 @@
                 id="last-name"
                 type="number"
                 name="last-name"
-                class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                 placeholder="xxxx-xxxx-xxxx-xxxx"
                 required
               />
@@ -378,7 +378,7 @@
                 id="cvc"
                 type="number"
                 name="cvc"
-                class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                 placeholder="•••"
                 required
               />
@@ -393,7 +393,7 @@
                 id="zip-code"
                 type="text"
                 name="zip-code"
-                class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-fuchsia-300 focus:ring-2 focus:ring-fuchsia-50 sm:text-sm"
+                class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                 placeholder="e.g. 12345"
                 required
               />

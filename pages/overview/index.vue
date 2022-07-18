@@ -2,9 +2,7 @@
   <NuxtLayout name="main">
     <div>
       <div class="grid w-full grid-cols-1 gap-4 xl:grid-cols-2 2xl:grid-cols-3">
-        <div
-          class="rounded-lg bg-white p-4 shadow sm:p-6 xl:p-8 2xl:col-span-2"
-        >
+        <div class="rounded-lg bg-white p-4 shadow sm:p-6 2xl:col-span-2">
           <div class="mb-4 flex items-center justify-between">
             <div class="flex-shrink-0">
               <span

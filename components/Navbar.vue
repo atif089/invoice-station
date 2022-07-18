@@ -53,7 +53,7 @@
               >Invoice<span class="text-cyan-700">Station</span></span
             >
           </NuxtLink>
-          <form action="#" method="GET" class="hidden lg:block lg:pl-32">
+          <form action="#" method="GET" class="hidden lg:block lg:pl-14">
             <label for="topbar-search" class="sr-only">Search</label>
             <div class="relative mt-1 lg:w-64">
               <div
