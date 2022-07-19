@@ -162,82 +162,109 @@
               </div>
             </div>
             <div class="col-span-1">
-              <div class="mb-4">
-                <label
-                  for="street-address"
-                  class="mb-2 block text-sm font-medium text-gray-900"
-                  >Item Name</label
-                >
-                <input
-                  id="street-address"
-                  type="text"
-                  name="street-address"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                  placeholder="Glassmorphism UI"
-                  required
-                />
+              <div v-for="n in numberOfItems" :key="n" class="border-b-2 py-4">
+                <div class="mb-4">
+                  <label
+                    for="street-address"
+                    class="mb-2 block text-sm font-medium text-gray-900"
+                    >Item Name</label
+                  >
+                  <input
+                    id="street-address"
+                    type="text"
+                    name="street-address"
+                    class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
+                    placeholder="Glassmorphism UI"
+                    required
+                  />
+                </div>
+                <div class="mb-4">
+                  <label
+                    for="street-address"
+                    class="mb-2 block text-sm font-medium text-gray-900"
+                    >Item Description</label
+                  >
+                  <input
+                    id="street-address"
+                    type="text"
+                    name="street-address"
+                    class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
+                    placeholder="Figma template"
+                    required
+                  />
+                </div>
+                <div class="flex gap-4">
+                  <div>
+                    <label
+                      for="city"
+                      class="mb-2 block text-sm font-medium text-gray-900"
+                      >Price</label
+                    >
+                    <input
+                      id="city"
+                      type="text"
+                      name="city"
+                      class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
+                      placeholder="$99"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="zip-code"
+                      class="mb-2 block text-sm font-medium text-gray-900"
+                      >Quantity</label
+                    >
+                    <input
+                      id="zip-code"
+                      type="text"
+                      name="zip-code"
+                      class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
+                      placeholder="1"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="city"
+                      class="mb-2 block text-sm font-medium text-gray-900"
+                      >Discount</label
+                    >
+                    <input
+                      id="country"
+                      type="text"
+                      name="country"
+                      class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
+                      placeholder="25%"
+                      required
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="mb-4">
-                <label
-                  for="street-address"
-                  class="mb-2 block text-sm font-medium text-gray-900"
-                  >Item Description</label
+              <div class="flex items-center">
+                <button
+                  class="mt-6 flex items-center rounded-lg border border-cyan-600 bg-white px-5 py-2.5 text-center text-sm font-medium text-cyan-600 hover:bg-cyan-700 hover:text-white focus:ring-4 focus:ring-cyan-200 sm:inline-flex"
+                  @click="numberOfItems++"
                 >
-                <input
-                  id="street-address"
-                  type="text"
-                  name="street-address"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                  placeholder="Figma template"
-                  required
-                />
-              </div>
-              <div class="flex gap-4">
-                <div>
-                  <label
-                    for="city"
-                    class="mb-2 block text-sm font-medium text-gray-900"
-                    >Price</label
+                  Add New Item
+                </button>
+                <button
+                  class="ml-4 mt-6 flex items-center rounded-lg border border-cyan-600 bg-white px-5 py-2.5 text-center text-sm font-medium text-cyan-600 hover:bg-cyan-700 hover:text-white focus:ring-4 focus:ring-cyan-200 sm:inline-flex"
+                  @click="numberOfItems > 0 && numberOfItems--"
+                >
+                  <svg
+                    class="h-5 w-5"
+                    aria-hidden="true"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
                   >
-                  <input
-                    id="city"
-                    type="text"
-                    name="city"
-                    class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                    placeholder="$99"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    for="zip-code"
-                    class="mb-2 block text-sm font-medium text-gray-900"
-                    >Quantity</label
-                  >
-                  <input
-                    id="zip-code"
-                    type="text"
-                    name="zip-code"
-                    class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                    placeholder="1"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    for="city"
-                    class="mb-2 block text-sm font-medium text-gray-900"
-                    >Discount</label
-                  >
-                  <input
-                    id="country"
-                    type="text"
-                    name="country"
-                    class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                    placeholder="25%"
-                    required
-                  />
-                </div>
+                    <path
+                      fill-rule="evenodd"
+                      d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
@@ -252,3 +279,8 @@
     </div>
   </NuxtLayout>
 </template>
+<script setup lang="ts">
+import { ref, reactive } from 'vue'
+const numberOfItems = ref<number>(1)
+const formObj = reactive({})
+</script>

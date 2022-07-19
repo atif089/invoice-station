@@ -30,6 +30,7 @@ export default defineNuxtConfig({
         {
           src: 'https://unpkg.com/flowbite@1.4.7/dist/flowbite.js',
           defer: true,
+          body: true,
         },
       ],
     },

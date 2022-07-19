@@ -4,7 +4,7 @@
   >
     <NuxtLink
       to="/"
-      class="mb-6 flex items-center text-4xl font-bold text-gray-700 lg:ml-2.5"
+      class="mb-6 flex items-center text-2xl font-bold text-gray-700 md:text-4xl lg:ml-2.5"
     >
       <img
         src="https://demo.themesberg.com/windster/images/logo.svg"

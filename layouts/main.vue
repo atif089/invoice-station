@@ -7,7 +7,7 @@
         id="main-content"
         class="relative h-full w-full overflow-y-auto bg-gray-50 lg:ml-64"
       >
-        <main class="p-8">
+        <main class="p-2 md:p-5">
           <slot />
         </main>
         <footer
@@ -133,7 +133,18 @@
 <script setup lang="ts">
 import { provide, ref } from 'vue'
 
-const sidebarActive = ref(true)
+const sidebarActive = ref<boolean>(false)
 
 provide('sidebarActive', sidebarActive)
 </script>
+<style>
+html {
+  scroll-behavior: smooth;
+}
+body {
+  @apply bg-gray-50;
+}
+.links {
+  color: #0694a2 !important;
+}
+</style>

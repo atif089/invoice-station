@@ -2,7 +2,9 @@
   <NuxtLayout name="main">
     <div>
       <div class="grid w-full grid-cols-1 gap-4 xl:grid-cols-2 2xl:grid-cols-3">
-        <div class="rounded-lg bg-white p-4 shadow sm:p-6 2xl:col-span-2">
+        <div
+          class="max-h-min overflow-hidden rounded-lg bg-white p-4 shadow sm:p-6 2xl:col-span-2"
+        >
           <div class="mb-4 flex items-center justify-between">
             <div class="flex-shrink-0">
               <span
@@ -17,35 +19,20 @@
               class="flex flex-1 items-center justify-end text-base font-bold text-green-500"
             >
               12.5%
-              <svg
-                class="h-5 w-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
             </div>
           </div>
-          <div id="main-chart" style="min-height: 435px">
+          <div id="main-chart" style="max-height: 400px">
             <div
               id="apexcharts0m0qswgrk"
-              class="apexcharts-canvas apexcharts0m0qswgrk apexcharts-theme-light"
-              style="width: 916px; height: 420px"
+              class="apexcharts-canvas apexcharts0m0qswgrk apexcharts-theme-light flex items-center justify-center"
             >
               <svg
                 id="SvgjsSvg1389"
-                width="916"
-                height="420"
                 xmlns="http://www.w3.org/2000/svg"
                 version="1.1"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:svgjs="http://svgjs.dev"
-                class="apexcharts-svg apexcharts-zoomable"
+                class="apexcharts-svg apexcharts-zoomable aspect-square h-auto w-auto object-center"
                 xmlns:data="ApexChartsNS"
                 transform="translate(0, 0)"
                 style="background: transparent"
@@ -390,18 +377,7 @@
                       data:realIndex="0"
                     ></g>
                   </g>
-                  <line
-                    id="SvgjsLine1450"
-                    x1="0"
-                    y1="0"
-                    x2="834.8608245849609"
-                    y2="0"
-                    stroke="#b6b6b6"
-                    stroke-dasharray="0"
-                    stroke-width="1"
-                    stroke-linecap="butt"
-                    class="apexcharts-ycrosshairs"
-                  ></line>
+
                   <line
                     id="SvgjsLine1451"
                     x1="0"
@@ -586,10 +562,10 @@
               </svg>
               <div class="apexcharts-legend" style="max-height: 210px"></div>
               <div class="apexcharts-tooltip apexcharts-theme-light">
-                <div
+                <!-- <div
                   class="apexcharts-tooltip-title"
                   style="font-family: Inter, sans-serif; font-size: 14px"
-                ></div>
+                ></div> -->
                 <div class="apexcharts-tooltip-series-group" style="order: 1">
                   <span
                     class="apexcharts-tooltip-marker"
@@ -630,7 +606,7 @@
             </div>
           </div>
         </div>
-        <div class="rounded-lg bg-white p-4 shadow sm:p-6 xl:p-8">
+        <div class="w-full rounded-lg bg-white p-4 shadow sm:p-6 xl:p-8">
           <div class="mb-4 flex items-center justify-between">
             <div>
               <h3 class="mb-2 text-xl font-bold text-gray-900">

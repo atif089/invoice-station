@@ -200,9 +200,9 @@
               </li>
 
               <li>
-                <NuxtLink
-                  to="/auth/login"
-                  class="group flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100"
+                <button
+                  class="group flex w-full items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100"
+                  @click="logout() && $router.replace('/')"
                 >
                   <svg
                     class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
@@ -216,13 +216,14 @@
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span class="ml-3 flex-1 whitespace-nowrap">Log out</span>
-                </NuxtLink>
+                  <span class="ml-3 w-full flex-1 whitespace-nowrap text-left"
+                    >Log out</span
+                  >
+                </button>
               </li>
             </ul>
             <div class="space-y-2 pt-2">
               <a
-                href="https://demo.themesberg.com/windster/pricing/"
                 class="group flex items-center rounded-lg p-2 text-base font-normal text-gray-900 transition duration-75 hover:bg-gray-100"
               >
                 <svg
@@ -243,7 +244,6 @@
                 <span class="ml-4">Upgrade to Pro</span>
               </a>
               <a
-                href="https://flowbite.com/docs/getting-started/introduction/"
                 target="_blank"
                 class="group flex items-center rounded-lg p-2 text-base font-normal text-gray-900 transition duration-75 hover:bg-gray-100"
               >
@@ -264,7 +264,6 @@
               </a>
 
               <a
-                href="https://github.com/themesberg/windster-tailwind-css-dashboard/issues"
                 target="_blank"
                 class="group flex items-center rounded-lg p-2 text-base font-normal text-gray-900 transition duration-75 hover:bg-gray-100"
               >
@@ -291,6 +290,7 @@
       id="sidebarBackdrop"
       :class="{ hidden: !sidebarActive }"
       class="fixed inset-0 z-10 bg-gray-900 opacity-50 lg:hidden"
+      @click="sidebarActive = false"
     ></div>
   </div>
 </template>
@@ -299,4 +299,9 @@
 import { inject } from 'vue'
 
 const sidebarActive = inject('sidebarActive')
+
+const logout = () => {
+  if (confirm('Are you sure you want to logout ?')) return true
+  return false
+}
 </script>

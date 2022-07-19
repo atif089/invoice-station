@@ -185,7 +185,7 @@
     <div class="px-4">
       <div class="mb-6 rounded-2xl bg-white p-4 shadow-lg shadow-gray-200">
         <h3 class="mb-4 text-xl font-bold">Create New Wallet</h3>
-        <form action="#">
+        <form action="#" @submit.prevent="createWallet">
           <div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
             <div class="col-span-1">
               <div class="mb-4">
@@ -258,7 +258,7 @@
                 >
                 <input
                   id="last-name"
-                  type="email"
+                  type="text"
                   name="last-name"
                   class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
                   placeholder="Green"
@@ -410,3 +410,9 @@
     </div>
   </NuxtLayout>
 </template>
+<script setup lang="ts">
+const createWallet = (e: any) => {
+  const obj = Object.fromEntries(new FormData(e.target))
+  console.log(obj)
+}
+</script>
