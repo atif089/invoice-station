@@ -1,13 +1,13 @@
 <template>
   <NuxtLayout name="main">
     <div>
-      <div class="mb-6 flex max-w-screen-2xl items-center justify-between">
+      <div class="mb-6 flex items-center justify-between">
         <h1 class="text-xl font-semibold text-gray-800 sm:text-2xl">
           Invoices
         </h1>
         <NuxtLink
           to="/invoices/create"
-          class="mr-8 flex items-center gap-2 rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 sm:inline-flex md:mr-32"
+          class="flex items-center gap-2 rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 sm:inline-flex md:mr-4 md:-translate-x-full"
         >
           <svg
             class="h-5 w-5 flex-shrink-0 text-white transition duration-75"
@@ -709,6 +709,82 @@
                   </div>
                 </td>
               </tr>
+              <tr
+                v-for="invoice in store.invoiceList"
+                :key="invoice?.id"
+                class="text-gray-700"
+              >
+                <td class="px-4 py-3">
+                  <div class="flex items-center text-sm">
+                    <!-- Avatar with inset shadow -->
+                    <div
+                      class="relative mr-3 hidden h-8 w-8 rounded-full md:block"
+                    >
+                      <img
+                        class="h-full w-full rounded-full object-cover"
+                        src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+                        alt=""
+                        loading="lazy"
+                      />
+                      <div
+                        class="absolute inset-0 rounded-full shadow-inner"
+                        aria-hidden="true"
+                      ></div>
+                    </div>
+                    <div>
+                      <p class="font-semibold">{{ invoice?.clientName }}</p>
+                      <p class="text-xs text-gray-600">#{{ invoice?.id }}</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-sm">$ {{ invoice?.cost }}.45</td>
+                <td class="px-4 py-3 text-xs">
+                  <span
+                    class="rounded-full bg-green-100 px-2 py-1 font-semibold leading-tight text-green-700"
+                  >
+                    {{ invoice?.status }}
+                  </span>
+                </td>
+                <td class="px-4 py-3 text-sm">
+                  {{ invoice?.createdAt.toLocaleDateString() }}
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center space-x-4 text-sm">
+                    <button
+                      class="focus:shadow-outline-gray flex items-center justify-between rounded-lg px-2 py-2 text-sm font-medium leading-5 text-cyan-600 focus:outline-none"
+                      aria-label="Edit"
+                    >
+                      <svg
+                        class="h-5 w-5"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+                        ></path>
+                      </svg>
+                    </button>
+                    <button
+                      class="focus:shadow-outline-gray flex items-center justify-between rounded-lg px-2 py-2 text-sm font-medium leading-5 text-cyan-600 focus:outline-none"
+                      aria-label="Delete"
+                    >
+                      <svg
+                        class="h-5 w-5"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -812,3 +888,7 @@
     </div>
   </NuxtLayout>
 </template>
+<script setup lang="ts">
+import { useInvoiceStore } from '@/store/invoices'
+const store = useInvoiceStore()
+</script>
