@@ -48,10 +48,10 @@ const rapydFetch = async (urlPath: string, options?: any) => {
     timestamp,
   })
 
-  const headers = {
+  const headers: HeadersInit = {
     access_key: accessKey,
     signature,
-    salt,
+    salt: salt as any,
     timestamp,
     'Content-Type': `application/json`,
   }
@@ -59,13 +59,11 @@ const rapydFetch = async (urlPath: string, options?: any) => {
   const url = `https://sandboxapi.rapyd.net` + urlPath
 
   const request = {
-    url,
     headers,
     method: httpMethod,
     data,
   }
 
-  // @ts-expect-error because request contains custom headers
   const response = await $fetch(url, request)
 
   return response
