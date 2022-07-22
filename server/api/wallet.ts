@@ -7,12 +7,17 @@ const secretKey = String(process.env.RAPYD_SECRET_KEY)
 
 bindKeys(accessKey, secretKey)
 
+type MyHTTPResponse = {
+  status: RapydFetchResponse['status'] | string
+  data?: RapydFetchResponse['data']
+}
+
 export default defineEventHandler(async () => {
   const rapydResponse = await rapydFetch(`/v1/user/wallets`, {
     httpMethod: `get`,
   })
 
-  const response: RapydFetchResponse = {
+  const response: MyHTTPResponse = {
     status: rapydResponse.status,
   }
 
