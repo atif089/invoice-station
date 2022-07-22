@@ -4,12 +4,19 @@ import HmacSHA256 from 'crypto-js/hmac-sha256'
 import Base64 from 'crypto-js/enc-base64'
 import Utf8 from 'crypto-js/enc-utf8'
 
-interface signatureParameters {
+type signatureParameters = {
   urlPath: string
   httpMethod: string
   data: string
   timestamp: string
   salt: WordArray
+}
+
+type RapydFetchResponse = {
+  status: {
+    status: string
+  }
+  data?: any
 }
 
 let accessKey = ''
@@ -34,7 +41,10 @@ const getSignature = (S: signatureParameters) => {
   return signature
 }
 
-const rapydFetch = async (urlPath: string, options?: any) => {
+const rapydFetch = (
+  urlPath: string,
+  options?: any
+): Promise<RapydFetchResponse> => {
   const salt = WordArray.random(12)
   const timestamp = (Math.floor(new Date().getTime() / 1000) - 10).toString()
   const httpMethod = options?.httpMethod ?? 'get' // get|put|post|delete - must be lowercase.
@@ -64,9 +74,7 @@ const rapydFetch = async (urlPath: string, options?: any) => {
     data,
   }
 
-  const response = await $fetch(url, request)
-
-  return response
+  return $fetch(url, request)
 }
 
 export { bindKeys, rapydFetch }
