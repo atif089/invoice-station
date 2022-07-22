@@ -77,4 +77,4 @@ const rapydFetch = (
   return $fetch(url, request)
 }
 
-export { bindKeys, rapydFetch }
+export { bindKeys, rapydFetch, RapydFetchResponse }

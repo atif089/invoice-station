@@ -1,4 +1,4 @@
-import { rapydFetch, bindKeys } from '@/utils/rapyd'
+import { rapydFetch, bindKeys, RapydFetchResponse } from '@/utils/rapyd'
 
 import 'dotenv/config'
 
@@ -12,12 +12,12 @@ export default defineEventHandler(async () => {
     httpMethod: `get`,
   })
 
-  const response = {
+  const response: RapydFetchResponse = {
     status: rapydResponse.status,
   }
-  
-  if(rapydResponse.status.status === `SUCCESS`) {
-    response.data = rapydResponse.data,
+
+  if (rapydResponse.status.status === `SUCCESS`) {
+    response.data = rapydResponse.data
   }
 
   return response
