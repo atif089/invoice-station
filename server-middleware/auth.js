@@ -1,7 +1,7 @@
 import { bindKeys } from '@/utils/rapyd'
 import 'dotenv/config'
 
-export default function (req, res, next) {
+export default function (_req, res, next) {
   const accessKey = String(process.env.RAPYD_ACCESS_KEY)
   const secretKey = String(process.env.RAPYD_SECRET_KEY)
 

@@ -156,4 +156,22 @@ body {
 .links {
   color: #0694a2 !important;
 }
+.formkit-outer {
+  @apply mb-6;
+}
+.formkit-input {
+  @apply block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm;
+  max-width: 415px;
+  font-family: inherit;
+}
+.formkit-input[type='submit'] {
+  width: max-content;
+  @apply flex items-center rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 sm:inline-flex;
+}
+.formkit-label {
+  @apply mb-2 block text-sm font-medium text-gray-900;
+}
+[data-message-type='validation'] {
+  @apply ml-2 mt-2 text-red-700;
+}
 </style>
