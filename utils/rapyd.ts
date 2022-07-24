@@ -4,12 +4,13 @@ import HmacSHA256 from 'crypto-js/hmac-sha256'
 import Base64 from 'crypto-js/enc-base64'
 import Utf8 from 'crypto-js/enc-utf8'
 
-type signatureParameters = {
+type signatureParams = {
   urlPath: string
   httpMethod: string
-  data: string
+  data?: string
   timestamp: string
   salt: WordArray
+  [key: string]: any
 }
 
 type RapydFetchResponse = {
@@ -17,6 +18,15 @@ type RapydFetchResponse = {
     status: string
   }
   data?: any
+  [key: string]: any
+}
+
+type RequestHeader = {
+  [key: string]: any
+}
+
+type Request = {
+  [key: string]: any
 }
 
 let accessKey = ''
@@ -27,15 +37,16 @@ const bindKeys = (userAccessKey: string, userSecretKey: string) => {
   secretKey = userSecretKey
 }
 
-const getSignature = (S: signatureParameters) => {
+const getSignature = ({
+  httpMethod,
+  urlPath,
+  salt,
+  timestamp,
+  data = '',
+}: signatureParams) => {
+  // this order is important
   const toSign =
-    S.httpMethod +
-    S.urlPath +
-    S.salt +
-    S.timestamp +
-    accessKey +
-    secretKey +
-    S.data
+    httpMethod + urlPath + salt + timestamp + accessKey + secretKey + data
   let signature = Hex.stringify(HmacSHA256(toSign, secretKey))
   signature = Base64.stringify(Utf8.parse(signature))
   return signature
@@ -48,17 +59,22 @@ const rapydFetch = (
   const salt = WordArray.random(12)
   const timestamp = (Math.floor(new Date().getTime() / 1000) - 10).toString()
   const httpMethod = options?.httpMethod ?? 'get' // get|put|post|delete - must be lowercase.
-  const data = options?.data ?? '' // Stringified JSON without whitespace.
+  const body = options?.body ?? '' // Stringified JSON without whitespace.
 
-  const signature = getSignature({
-    urlPath,
+  const sigParams: signatureParams = {
     httpMethod,
-    data,
+    urlPath,
     salt,
     timestamp,
-  })
+  }
 
-  const headers: HeadersInit = {
+  if (body) {
+    sigParams.data = JSON.stringify(body)
+  }
+
+  const signature: string = getSignature(sigParams)
+
+  const headers: RequestHeader = {
     access_key: accessKey,
     signature,
     salt: salt as any,
@@ -68,10 +84,13 @@ const rapydFetch = (
 
   const url = `https://sandboxapi.rapyd.net` + urlPath
 
-  const request = {
+  const request: Request = {
     headers,
     method: httpMethod,
-    data,
+  }
+
+  if (body) {
+    request.body = body
   }
 
   return $fetch(url, request)
