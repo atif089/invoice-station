@@ -23,8 +23,13 @@ export default defineEventHandler(async (event) => {
     return response
   }
 
-  const rapydResponse = await rapydFetch(`/v1/user/${walletId}`, {
-    httpMethod: `get`,
+  const rapydResponse = await rapydFetch(`/v1/issuing/bankaccounts`, {
+    httpMethod: `post`,
+    body: {
+      country: 'DE',
+      currency: 'EUR',
+      ewallet: walletId,
+    },
   })
 
   if (rapydResponse.status.status === `SUCCESS`) {
