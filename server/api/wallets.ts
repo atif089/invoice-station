@@ -1,11 +1,4 @@
-import { rapydFetch, bindKeys, RapydFetchResponse } from '@/utils/rapyd'
-
-import 'dotenv/config'
-
-const accessKey = String(process.env.RAPYD_ACCESS_KEY)
-const secretKey = String(process.env.RAPYD_SECRET_KEY)
-
-bindKeys(accessKey, secretKey)
+import { rapydFetch, RapydFetchResponse } from '@/utils/rapyd'
 
 type MyHTTPResponse = {
   status: RapydFetchResponse['status'] | string

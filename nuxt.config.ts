@@ -13,6 +13,9 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  serverMiddleware: ['~/server-middleware/auth'],
+
   css: ['~/assets/css/tailwind.css'],
 
   app: {
