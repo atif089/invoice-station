@@ -280,7 +280,6 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 const numberOfItems = ref<number>(1)
-const formObj = reactive({})
 </script>
