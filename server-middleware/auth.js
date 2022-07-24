@@ -1,11 +1,14 @@
 import { bindKeys } from '@/utils/rapyd'
 import 'dotenv/config'
 
-export default function (_req, res, next) {
-  const accessKey = String(process.env.RAPYD_ACCESS_KEY)
-  const secretKey = String(process.env.RAPYD_SECRET_KEY)
+export default function (req, res, next) {
+  const user = {
+    userId: String(process.env.USER_ID),
+    accessKey: String(process.env.RAPYD_ACCESS_KEY),
+    secretKey: String(process.env.RAPYD_SECRET_KEY),
+  }
 
-  if (!accessKey || !secretKey) {
+  if (!user.accessKey || !user.secretKey) {
     res.statusCode = 401
     res.setHeader('Content-Type', 'application/json')
     res.end(
@@ -16,8 +19,10 @@ export default function (_req, res, next) {
     return
   }
 
-  // Memoize this in a better way per sser
-  bindKeys(accessKey, secretKey)
+  // TODO: Use auth-modulewhen ready
+  // https://github.com/nuxt-community/auth-module
+  bindKeys(user.accessKey, user.secretKey)
+  req.event.context.user = user
 
   // next is a function to call to invoke the next middleware
   // Don't forget to call next at the end if your middleware is not an endpoint!
