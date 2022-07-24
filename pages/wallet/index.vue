@@ -185,7 +185,7 @@
     <div class="px-4">
       <div class="mb-6 rounded-2xl bg-white p-4 shadow-lg shadow-gray-200">
         <h3 class="mb-4 text-xl font-bold">Create New Wallet</h3>
-        <form action="#" @submit.prevent="createWallet">
+        <form action="#">
           <div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
             <div class="col-span-1">
               <div class="mb-4">
@@ -406,13 +406,24 @@
             Update
           </button>
         </form>
+        <FormKit
+          type="form"
+          submit-label="Create Wallet"
+          @submit="createWallet"
+        >
+          <FormKit name="first-name" label="First Name" validation="required" />
+          <FormKit name="last-name" label="Last Name" validation="required" />
+        </FormKit>
       </div>
     </div>
   </NuxtLayout>
 </template>
 <script setup lang="ts">
-const createWallet = (e: any) => {
-  const obj = Object.fromEntries(new FormData(e.target))
-  console.log(obj)
+type CreateWallet = {
+  'first-name': string
+  'last-name': string
+}
+const createWallet = (formDetails: CreateWallet) => {
+  console.log(formDetails)
 }
 </script>
