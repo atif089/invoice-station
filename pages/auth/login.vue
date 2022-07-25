@@ -23,7 +23,7 @@
         <h2 class="text-2xl font-bold text-gray-900 lg:text-3xl">
           Sign in to platform
         </h2>
-        <form class="mt-8 space-y-6" action="#">
+        <form class="mt-8 space-y-6">
           <div>
             <label
               for="email"
@@ -36,7 +36,6 @@
               name="email"
               class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
               placeholder="name@company.com"
-              required
             />
           </div>
           <div>
@@ -51,7 +50,6 @@
               name="password"
               placeholder="••••••••"
               class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-cyan-600 sm:text-sm"
-              required
             />
           </div>
           <div class="flex items-start">
@@ -62,7 +60,6 @@
                 name="remember"
                 type="checkbox"
                 class="focus:ring-3 h-4 w-4 rounded border-gray-300 bg-gray-50 focus:ring-cyan-200"
-                required
               />
             </div>
             <div class="ml-3 text-sm">

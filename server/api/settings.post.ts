@@ -1,5 +1,4 @@
 import { doc, getDoc, setDoc } from 'firebase/firestore'
-import { EmitFlags } from 'typescript'
 import { db } from '@/utils/firestore'
 
 type HTTPResponse = {
@@ -27,6 +26,15 @@ export default defineEventHandler(async (event) => {
       last_name: body?.last_name || oldData.last_name,
       email: body?.email || oldData.email,
       user_data: body?.user_data || oldData.user_data,
+      country: body?.country || oldData.country,
+      city: body?.city || oldData.city,
+      address: body?.address || oldData.address,
+      phone_number: body?.phone_number || oldData.phone_number,
+      birthday: body?.birthday || oldData.birthday,
+      organization: body?.organization || oldData.organization,
+      role: body?.role || oldData.role,
+      department: body?.department || oldData.department,
+      zip_code: body?.zip_code || oldData.zip_code,
     }
     await setDoc(docRef, newData)
   } else {

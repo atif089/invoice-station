@@ -144,5 +144,4 @@ import { useWalletStore } from '@/store/wallets/wallets'
 const { fetchAllWallets, getAllWallets } = useWalletStore()
 await fetchAllWallets()
 const allWallets = getAllWallets
-console.log(allWallets)
 </script>
