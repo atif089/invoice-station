@@ -1,4 +1,4 @@
-import { rapydFetch, bindKeys, RapydFetchResponse } from '@/utils/rapyd'
+import { rapydFetch, RapydFetchResponse } from '@/utils/rapyd'
 
 type MyHTTPResponse = {
   status: RapydFetchResponse['status'] | string

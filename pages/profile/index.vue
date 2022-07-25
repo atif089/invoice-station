@@ -2,7 +2,7 @@
   <NuxtLayout name="main">
     <Transition name="fade" mode="out-in">
       <div
-        v-if="getProfile.pending"
+        v-if="getProfile.loading"
         class="flex min-h-[70vh] items-center justify-center"
       >
         <div role="status">
@@ -762,7 +762,7 @@ const update = async (formData: Profile) => {
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s -0.5s ease-in;
+  transition: opacity 0.5s ease-in -0.3s;
 }
 .fade-enter-from,
 .fade-leave-to {

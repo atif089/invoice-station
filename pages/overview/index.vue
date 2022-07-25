@@ -1214,3 +1214,10 @@
     </div>
   </NuxtLayout>
 </template>
+<script setup lang="ts">
+import { useWalletStore } from '@/store/wallets'
+
+const { fetchAllWallets } = useWalletStore()
+
+fetchAllWallets()
+</script>

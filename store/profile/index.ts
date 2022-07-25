@@ -17,11 +17,11 @@ export interface Profile {
 
 export interface ProfileState {
   profile: Profile
-  pending: boolean
+  loading: boolean
 }
 const state = (): ProfileState => ({
   profile: {} as Profile,
-  pending: true,
+  loading: true,
 })
 
 const getters = {
@@ -34,7 +34,7 @@ const actions = {
       // @ts-ignore
       this.profile = profile
       // @ts-ignore
-      this.pending = pending
+      this.loading = pending
     } catch (error) {}
   },
   async UpdateProfile(formData: Profile) {
