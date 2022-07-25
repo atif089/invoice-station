@@ -3,240 +3,156 @@
     <div class="px-4">
       <div class="mb-6 rounded-2xl bg-white p-4 shadow-lg shadow-gray-200">
         <h3 class="mb-4 text-xl font-bold">Create New Invoice</h3>
-        <form action="#">
+        <FormKit
+          id="createInvoice"
+          type="form"
+          submit-label="Create Invoice"
+          @submit="create"
+        >
           <div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
             <div class="col-span-1">
               <div class="mb-4">
-                <label
-                  for="client-name"
-                  class="mb-2 block text-sm font-medium text-gray-900"
-                  >Client's Name</label
-                >
-                <input
-                  id="client-name"
-                  type="text"
-                  name="client-name"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                  placeholder="Jane Doe"
-                  required
+                <FormKit
+                  name="client_name"
+                  label="Client's Name"
+                  placeholder="John Doe"
+                  validation="required|alpha_spaces:latin|length:3"
                 />
               </div>
               <div class="mb-4">
-                <label
-                  for="client-email"
-                  class="mb-2 block text-sm font-medium text-gray-900"
-                  >Client's Email</label
-                >
-                <input
-                  id="client-email"
+                <FormKit
+                  name="client_email"
+                  label="Client's Email"
+                  placeholder="johndoe@example.com"
                   type="email"
-                  name="client-email"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                  placeholder="example@company.com"
-                  required
+                  validation="required|email"
                 />
               </div>
               <div class="mb-4">
-                <label
-                  for="street-address"
-                  class="mb-2 block text-sm font-medium text-gray-900"
-                  >Street Address</label
-                >
-                <input
-                  id="street-address"
-                  type="text"
-                  name="street-address"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                  placeholder="Downtown"
-                  required
+                <FormKit
+                  name="street_address"
+                  label="Street Address"
+                  placeholder="Downtow"
+                  validation="required|alpha_numeric|length:3"
                 />
               </div>
               <div class="flex gap-4">
                 <div>
-                  <label
-                    for="city"
-                    class="mb-2 block text-sm font-medium text-gray-900"
-                    >City</label
-                  >
-                  <input
-                    id="city"
-                    type="text"
+                  <FormKit
                     name="city"
-                    class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                    placeholder="San Francisco"
-                    required
+                    label="City"
+                    placeholder="New York city"
+                    validation="required|alpha_spaces:latin|length:3"
                   />
                 </div>
                 <div>
-                  <label
-                    for="zip-code"
-                    class="mb-2 block text-sm font-medium text-gray-900"
-                    >Zip Code</label
-                  >
-                  <input
-                    id="zip-code"
-                    type="text"
-                    name="zip-code"
-                    class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
+                  <FormKit
+                    name="zip_code"
+                    label="Zip Code"
                     placeholder="123456"
-                    required
+                    type="number"
+                    validation="required|number|length:6,6"
                   />
                 </div>
                 <div>
-                  <label
-                    for="city"
-                    class="mb-2 block text-sm font-medium text-gray-900"
-                    >Country</label
-                  >
-                  <input
-                    id="country"
-                    type="text"
+                  <FormKit
                     name="country"
-                    class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
+                    label="Country"
                     placeholder="United States"
-                    required
+                    validation="required|alpha_spaces:latin|length:3"
                   />
                 </div>
               </div>
             </div>
             <div class="col-span-1">
               <div class="mb-4">
-                <label
-                  for="invoice-date"
-                  class="mb-2 block text-sm font-medium text-gray-900"
-                  >Invoice Date</label
-                >
-                <input
-                  id="invoice-date"
-                  type="email"
-                  name="invoice-date"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                  placeholder="18/07/2022"
-                  required
+                <FormKit
+                  name="invoice_date"
+                  label="Invoice Date"
+                  placeholder="7/26/2022"
+                  type="date"
+                  validation="required"
                 />
               </div>
               <div class="mb-4">
-                <label
-                  for="payment-due"
-                  class="mb-2 block text-sm font-medium text-gray-900"
-                  >Payment Due</label
-                >
-                <input
-                  id="payment-due"
-                  type="text"
-                  name="payment-due"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                  placeholder=""
-                  required
+                <FormKit
+                  name="payment_due"
+                  label="Payment Due"
+                  placeholder="$99"
+                  type="date"
+                  :validation="`date_after:${new Date().toJSON().slice(0, 10)}`"
                 />
               </div>
               <div class="mb-4">
-                <label
-                  for="payment-terms"
-                  class="mb-2 block text-sm font-medium text-gray-900"
-                  >Payment Terms</label
-                >
-                <input
-                  id="payment-terms"
-                  type="text"
-                  name="payment-terms"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                  placeholder=""
-                  required
+                <FormKit
+                  name="payment_terms"
+                  label="Payment Terms"
+                  placeholder="Payment Terms"
+                  type="select"
+                  :options="[
+                    'Net 30 days',
+                    'Net 60 days',
+                    'Net 90 days',
+                    'Net 180 days',
+                    'Custom',
+                  ]"
+                  validation="required"
                 />
               </div>
               <div>
-                <label
-                  for="description"
-                  class="mb-2 block text-sm font-medium text-gray-900"
-                  >Description</label
-                >
-                <input
-                  id="description"
-                  type="text"
+                <FormKit
                   name="description"
-                  class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                  placeholder=""
-                  required
+                  label="Product Description"
+                  placeholder="create a personal portfolio"
+                  validation=""
                 />
               </div>
             </div>
             <div class="col-span-1">
               <div v-for="n in numberOfItems" :key="n" class="border-b-2 py-4">
                 <div class="mb-4">
-                  <label
-                    for="street-address"
-                    class="mb-2 block text-sm font-medium text-gray-900"
-                    >Item Name</label
-                  >
-                  <input
-                    id="street-address"
-                    type="text"
-                    name="street-address"
-                    class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                    placeholder="Glassmorphism UI"
-                    required
+                  <FormKit
+                    :name="`item_name_${n}`"
+                    label="Item Name"
+                    placeholder="eg. Website Design"
+                    validation="required|alpha_spaces:latin|length:3"
                   />
                 </div>
                 <div class="mb-4">
-                  <label
-                    for="street-address"
-                    class="mb-2 block text-sm font-medium text-gray-900"
-                    >Item Description</label
-                  >
-                  <input
-                    id="street-address"
-                    type="text"
-                    name="street-address"
-                    class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                    placeholder="Figma template"
-                    required
+                  <FormKit
+                    :name="`item_description_${n}`"
+                    label="Item Description"
+                    placeholder="(optional)"
+                    validation=""
                   />
                 </div>
                 <div class="flex gap-4">
                   <div>
-                    <label
-                      for="city"
-                      class="mb-2 block text-sm font-medium text-gray-900"
-                      >Price</label
-                    >
-                    <input
-                      id="city"
-                      type="text"
-                      name="city"
-                      class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                      placeholder="$99"
-                      required
+                    <FormKit
+                      :name="`price_${n}`"
+                      label="Price"
+                      placeholder="$200"
+                      type="number"
+                      validation="required"
                     />
                   </div>
                   <div>
-                    <label
-                      for="zip-code"
-                      class="mb-2 block text-sm font-medium text-gray-900"
-                      >Quantity</label
-                    >
-                    <input
-                      id="zip-code"
-                      type="text"
-                      name="zip-code"
-                      class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
+                    <FormKit
+                      :name="`quantity_${n}`"
+                      label="Quantity"
                       placeholder="1"
-                      required
+                      type="number"
+                      value="1"
+                      validation="required"
                     />
                   </div>
                   <div>
-                    <label
-                      for="city"
-                      class="mb-2 block text-sm font-medium text-gray-900"
-                      >Discount</label
-                    >
-                    <input
-                      id="country"
-                      type="text"
-                      name="country"
-                      class="shadow-lg-sm block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                      placeholder="25%"
-                      required
+                    <FormKit
+                      :name="`discount_${n}`"
+                      label="Discount"
+                      placeholder="20%"
+                      type="number"
+                      validation="required|min:1|max:100"
                     />
                   </div>
                 </div>
@@ -268,18 +184,19 @@
               </div>
             </div>
           </div>
-          <button
-            class="flex items-center rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 sm:inline-flex"
-            type="submit"
-          >
-            Create Invoice
-          </button>
-        </form>
+        </FormKit>
       </div>
     </div>
   </NuxtLayout>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useInvoiceStore, InvoiceAdd } from '@/store/invoices'
+
+const { createInvoice } = useInvoiceStore()
 const numberOfItems = ref<number>(1)
+
+const create = (formData: InvoiceAdd) => {
+  createInvoice({ invoice_data: { ...formData } })
+  this.$formkit.reset('createInvoice')
+}
 </script>

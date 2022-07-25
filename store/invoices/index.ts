@@ -8,8 +8,23 @@ export interface Invoice {
   createdAt: Date
 }
 export interface InvoiceAdd {
-  clientName: string
-  cost: number
+  invoice_data: {
+    city: string
+    client_email: string
+    client_name: string
+    country: string
+    description: string
+    discount_1: number
+    invoice_date: Date
+    item_description_1: string
+    item_name_1: string
+    payment_due: Date
+    payment_terms: string
+    price_1: number
+    quantity_1: number
+    street_address: string
+    zip_code: number
+  }
 }
 export interface InvoiceState {
   invoiceList: Invoice[]
@@ -28,15 +43,12 @@ const getters = {
     ),
 }
 const actions = {
-  createInvoice(partialInvoice: InvoiceAdd) {
-    const newInvoice: Invoice = {
-      ...partialInvoice,
-      createdAt: new Date(),
-      id: Math.floor(Math.random() * 100).toString(),
-      status: 'Pending',
-    }
-    // @ts-ignore
-    this.invoiceList.push(newInvoice)
+  async createInvoice(newInvoice: InvoiceAdd) {
+    const { data, pending } = await useFetch('/api/invoice', {
+      method: 'POST',
+      body: JSON.stringify(newInvoice),
+    })
+    console.log(data, pending)
   },
 }
 
