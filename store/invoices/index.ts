@@ -7,6 +7,19 @@ export interface Invoice {
   status: 'Approved' | 'Pending' | 'Denied' | 'Expired'
   createdAt: Date
 }
+
+export interface invoiceItemCost {
+  price: number
+  quantity: number
+  discount: number
+  discountPrice: number
+  total: number
+}
+export interface InvoiceItem {
+  name: string
+  description?: string
+  cost: invoiceItemCost
+}
 export interface InvoiceAdd {
   invoice_data: {
     city: string
@@ -14,33 +27,31 @@ export interface InvoiceAdd {
     client_name: string
     country: string
     description: string
-    discount_1: number
     invoice_date: Date
-    item_description_1: string
-    item_name_1: string
     payment_due: Date
     payment_terms: string
-    price_1: number
-    quantity_1: number
     street_address: string
     zip_code: number
+    items: {
+      [key: string]: InvoiceItem
+    }
   }
 }
 export interface InvoiceState {
   invoiceList: Invoice[]
+  loading: boolean
+  singleInvoice: InvoiceAdd
+  pending: boolean
 }
 const state = (): InvoiceState => ({
   invoiceList: [],
+  loading: true,
+  singleInvoice: {} as InvoiceAdd,
+  pending: true,
 })
 
 const getters = {
-  getById: (state: InvoiceState) => (id: string) => {
-    return state.invoiceList?.find((invoice: Invoice) => invoice.id === id)
-  },
-  getOrderedInvoices: (state: InvoiceState) =>
-    [...state.invoiceList].sort(
-      (a: Invoice, b: Invoice) => a.createdAt.getTime() - b.createdAt.getTime()
-    ),
+  getOrderedInvoices: (state: InvoiceState) => state,
 }
 const actions = {
   async createInvoice(newInvoice: InvoiceAdd) {
@@ -49,6 +60,20 @@ const actions = {
       body: JSON.stringify(newInvoice),
     })
     console.log(data, pending)
+  },
+  fetchInvoices() {
+    const { data, pending } = useFetch('/api/invoices')
+    // @ts-ignore
+    this.invoiceList = data
+    // @ts-ignore
+    this.loading = pending
+  },
+  async getById(id: string) {
+    const { data, pending } = await useFetch(`/api/invoice/${id}`)
+    // @ts-ignore
+    this.singleInvoice = data
+    // @ts-ignore
+    this.pending = pending
   },
 }
 

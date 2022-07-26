@@ -3,7 +3,7 @@
     <Transition name="fade" mode="out-in">
       <div
         v-if="getProfile.loading"
-        class="flex min-h-[70vh] items-center justify-center"
+        class="flex min-h-[60vh] items-center justify-center"
       >
         <div role="status">
           <svg

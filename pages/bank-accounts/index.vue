@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="main">
-    <div class="min-h-[65vh]">
+    <div>
       <div class="mb-6 flex items-center justify-between">
         <h1 class="text-xl font-semibold text-gray-800 sm:text-2xl">
           Virtual IBAN Accounts
@@ -50,7 +50,7 @@
             <Transition name="fade" mode="out-in">
               <div
                 v-if="getAllAccounts.loading"
-                class="flex min-h-[50vh] items-center justify-center"
+                class="flex h-[50vh] items-center justify-center"
               >
                 <div role="status">
                   <svg

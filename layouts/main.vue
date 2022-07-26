@@ -5,9 +5,9 @@
       <Sidebar />
       <div
         id="main-content"
-        class="relative h-full w-full overflow-y-auto bg-gray-50 lg:ml-64"
+        class="relative w-full overflow-y-auto bg-gray-50 lg:ml-64"
       >
-        <main class="p-2 md:p-5">
+        <main class="min-h-[70vh] p-2 md:p-5">
           <slot />
         </main>
         <Footer />
@@ -16,8 +16,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { provide, ref } from 'vue'
-
 const sidebarActive = ref<boolean>(false)
 
 provide('sidebarActive', sidebarActive)
@@ -35,6 +33,7 @@ provide('sidebarActive', sidebarActive)
 <style>
 html {
   scroll-behavior: smooth;
+  overflow: auto;
 }
 body {
   @apply bg-gray-50;
@@ -55,6 +54,6 @@ body {
   @apply mb-2 block text-sm font-medium text-gray-900;
 }
 [data-message-type='validation'] {
-  @apply ml-2 mt-2 text-red-700;
+  @apply ml-2 mt-2 text-sm text-red-700;
 }
 </style>
