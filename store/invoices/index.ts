@@ -55,9 +55,10 @@ const getters = {
 }
 const actions = {
   async createInvoice(newInvoice: InvoiceAdd) {
+    console.log(newInvoice)
     const { data, pending } = await useFetch('/api/invoice', {
       method: 'POST',
-      body: JSON.stringify(newInvoice),
+      body: newInvoice,
     })
     console.log(data, pending)
   },

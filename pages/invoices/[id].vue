@@ -137,7 +137,7 @@
             </div>
             <div>
               <h1 class="text-center text-lg font-semibold text-gray-900">
-                VIBAN Account No: DE07202208000092780641
+                VIBAN Account No: {{ invoice.invoice_data.vIban }}
               </h1>
             </div>
             <div class="sm:w-72">

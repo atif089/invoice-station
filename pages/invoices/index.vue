@@ -1,13 +1,13 @@
 <template>
   <NuxtLayout name="main">
     <div>
-      <div class="mb-6 flex items-center justify-between">
+      <div class="mb-6 flex max-w-screen-2xl items-center justify-between">
         <h1 class="text-xl font-semibold text-gray-800 sm:text-2xl">
           Invoices
         </h1>
         <NuxtLink
           to="/invoices/create"
-          class="flex items-center gap-2 rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 sm:inline-flex md:mr-4 md:-translate-x-full"
+          class="flex items-center gap-2 rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 sm:inline-flex md:mr-12"
         >
           <svg
             class="h-5 w-5 flex-shrink-0 text-white transition duration-75"
@@ -91,7 +91,7 @@
                         <div>
                           <NuxtLink
                             :to="`/invoices/${invoice.invoice_id}`"
-                            class="font-semibold"
+                            class="font-semibold capitalize"
                             >{{ invoice.invoice_data.client_name }}
                             <p class="text-xs text-gray-600">
                               {{ invoice.invoice_id }}

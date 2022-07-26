@@ -36,7 +36,7 @@
                   validation="required|alpha_numeric|length:3"
                 />
               </div>
-              <div class="flex gap-4">
+              <div class="mb-4 flex gap-4">
                 <div>
                   <FormKit
                     name="city"
@@ -62,6 +62,28 @@
                     validation="required|alpha_spaces:latin|length:3"
                   />
                 </div>
+              </div>
+              <div class="mt-5 border-t border-dashed border-gray-500 pt-5">
+                <label
+                  for="default"
+                  class="mb-2 block text-sm font-medium text-gray-900"
+                  >Choose Wallet</label
+                >
+                <select
+                  id="default"
+                  class="text-md shadow-lg-sm block w-full max-w-sm rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
+                  required
+                  @change="getAccounts"
+                >
+                  <option selected>Choose a wallet</option>
+                  <option
+                    v-for="wallet in getAllWallets.walletList.data"
+                    :key="wallet.id"
+                    :value="wallet.id"
+                  >
+                    {{ wallet.id }}
+                  </option>
+                </select>
               </div>
             </div>
             <div class="col-span-1">
@@ -99,7 +121,7 @@
                   validation="required"
                 />
               </div>
-              <div>
+              <div class="mb-4">
                 <FormKit
                   name="description"
                   label="Product Description"
@@ -107,9 +129,28 @@
                   validation=""
                 />
               </div>
+              <div class="mt-5 border-t border-dashed border-gray-500 pt-5">
+                <FormKit
+                  type="select"
+                  label="Select VIBAN Account"
+                  name="vIban"
+                  validation="required"
+                  placeholder="choose account"
+                  :options="['chooose account']"
+                >
+                  <option disabled selected>Select your vIban Account</option>
+                  <option
+                    v-for="account in vIbanAccounts"
+                    :key="account"
+                    :value="account"
+                  >
+                    {{ account }}
+                  </option>
+                </FormKit>
+              </div>
             </div>
             <div
-              class="col-span-1 h-[50vh] overflow-y-auto rounded-lg border border-dashed border-gray-300 p-3"
+              class="col-span-1 h-[45vh] overflow-y-auto rounded-lg border border-dashed border-gray-300 p-3"
             >
               <FormKit type="group" name="items" class="col-span-1">
                 <div
@@ -200,7 +241,14 @@
             </div>
           </div>
         </FormKit>
-        <h1 class="text-2xl">Total: ${{ calculateTotal }}</h1>
+        <div class="relative -top-8 ml-48 flex w-full gap-5">
+          <h1 class="text-2xl">SubTotal: ${{ calculateTotal.subTotal }}</h1>
+          <h1 class="text-2xl">Discounts: ${{ calculateTotal.discounts }}</h1>
+          <h1 class="text-2xl">
+            Total:
+            <span class="text-cyan-600">${{ calculateTotal.grandTotal }}</span>
+          </h1>
+        </div>
       </div>
     </div>
   </NuxtLayout>
@@ -210,10 +258,45 @@ import { reset } from '@formkit/core'
 import { useInvoiceStore, InvoiceAdd, invoiceItemCost } from '@/store/invoices'
 import { useProfileStore, Profile } from '@/store/profile'
 
+import { useWalletStore } from '@/store/wallets'
+import { useAccountStore } from '@/store/accounts'
+
 const { getProfile, fetchProfile } = useProfileStore()
 fetchProfile()
 const { createInvoice } = useInvoiceStore()
 const numberOfItems = ref<number>(1)
+const allItems = reactive<invoiceItemCost[]>([
+  {
+    price: 0,
+    quantity: 1,
+    discount: 0,
+    discountPrice: 0,
+    total: 0,
+  },
+])
+const calculateTotal = computed(() => {
+  return allItems.reduce(
+    (acc, curr) => {
+      const { price, quantity, discount } = curr
+      const subtotal: number = +price * +quantity
+      const discountPercentage = (+discount / 100) * subtotal
+      const total = +(subtotal - discountPercentage).toFixed(2)
+      curr.discountPrice = discountPercentage
+      curr.total = total
+      console.log(curr)
+      acc.grandTotal = acc.grandTotal + total
+      acc.subTotal = acc.subTotal + subtotal
+      acc.discounts = acc.discounts + discountPercentage
+
+      return acc
+    },
+    {
+      grandTotal: 0,
+      subTotal: 0,
+      discounts: 0,
+    }
+  )
+})
 
 const create = (formData: InvoiceAdd) => {
   for (const [key, value] of Object.entries(formData.items)) {
@@ -225,16 +308,8 @@ const create = (formData: InvoiceAdd) => {
       cost: allItems[index],
     }
   }
-  const subTotal = allItems.reduce(
-    (acc, val) => acc + +val.price * +val.quantity,
-    0
-  )
-  const discounts = allItems.reduce((acc, val) => acc + val.discountPrice, 0)
-  const grandTotal = allItems.reduce((acc, val) => acc + val.total, 0)
   formData.cost = {
-    subTotal,
-    discounts,
-    grandTotal,
+    ...calculateTotal.value,
   }
   console.log(formData)
   createInvoice({
@@ -243,27 +318,6 @@ const create = (formData: InvoiceAdd) => {
   reset('createInvoice')
   alert('Invoice created successfully!')
 }
-const allItems = reactive<invoiceItemCost[]>([
-  {
-    price: 0,
-    quantity: 1,
-    discount: 0,
-    discountPrice: 0,
-    total: 0,
-  },
-])
-
-const calculateTotal = computed(() => {
-  return allItems.reduce((acc, curr) => {
-    const { price, quantity, discount } = curr
-    const subtotal: number = +price * +quantity
-    const discountPercentage = (+discount / 100) * subtotal
-    const total = +(subtotal - discountPercentage).toFixed(2)
-    curr.discountPrice = discountPercentage
-    curr.total = total
-    return acc + total
-  }, 0)
-})
 
 const addItem = () => {
   allItems.push({
@@ -277,4 +331,20 @@ const addItem = () => {
 }
 
 console.log(getProfile.profile)
+
+const { getAllWallets } = useWalletStore()
+const { fetchAllAccounts, getAllAccounts, refreshState } = useAccountStore()
+const walletId = ref<string>('')
+const getAccounts = (event: any) => {
+  walletId.value = event.target.value
+  fetchAllAccounts(walletId.value)
+  refreshState()
+}
+
+const vIbanAccounts = computed(() => {
+  return getAllAccounts?.bank_accounts?.data?.data?.bank_accounts.map(
+    (account) => account.account_id
+  )
+})
+console.log(getAllAccounts)
 </script>
