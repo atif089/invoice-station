@@ -99,21 +99,22 @@
                     {{ account.split(' ')[0] }}
                   </option>
                 </FormKit> -->
-                <div class="">
-                  <h1 class="text-xl">
-                    Subtotal: ${{ calculateTotal.subTotal.toFixed(2) }}
+                <div class="hidden md:block">
+                  <h1 class="flex justify-between text-xl">
+                    Subtotal:
+                    <span>${{ calculateTotal.subTotal.toFixed(2) }}</span>
                   </h1>
-                  <h1 class="text-xl">
-                    Discount: ${{ calculateTotal.discounts.toFixed(2) }}
+                  <h1 class="flex justify-between text-xl">
+                    Discount:
+                    <span>${{ calculateTotal.discounts.toFixed(2) }}</span>
                   </h1>
                   <h1
-                    class="mt-2 mb-6 inline-block border-t-2 border-dashed border-cyan-600 pt-2 text-2xl"
+                    class="mt-2 mb-6 flex justify-between border-t-2 border-dashed border-cyan-600 pt-2 text-2xl"
                   >
                     Total:
                     <span class="text-3xl text-cyan-600"
                       >${{ calculateTotal.grandTotal.toFixed(2) }}</span
                     >
-                    &nbsp;
                   </h1>
                 </div>
               </div>
@@ -278,6 +279,22 @@
               </FormKit>
             </div>
           </div>
+          <div class="mt-5 block md:hidden">
+            <h1 class="flex justify-between text-xl">
+              Subtotal: <span>${{ calculateTotal.subTotal.toFixed(2) }}</span>
+            </h1>
+            <h1 class="flex justify-between text-xl">
+              Discount: <span>${{ calculateTotal.discounts.toFixed(2) }}</span>
+            </h1>
+            <h1
+              class="mt-2 mb-6 flex justify-between border-t-2 border-dashed border-cyan-600 pt-2 text-2xl"
+            >
+              Total:
+              <span class="text-3xl text-cyan-600"
+                >${{ calculateTotal.grandTotal.toFixed(2) }}</span
+              >
+            </h1>
+          </div>
         </FormKit>
       </div>
     </div>
@@ -383,4 +400,12 @@ const createAccount = async (walletId: string) => {
 const router = useRouter()
 const goBack = () => router.back()
 </script>
-<style></style>
+<style>
+#createInvoice .formkit-input[type='submit'] {
+  display: block;
+
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  @apply w-full md:w-1/3;
+}
+</style>
