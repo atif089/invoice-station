@@ -113,7 +113,12 @@
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <span
-                          class="rounded-full bg-green-100 px-2 py-1 font-semibold leading-tight text-green-700"
+                          class="rounded-full bg-gray-300 px-2 py-1 font-semibold leading-tight text-gray-700"
+                          :class="
+                            invoice?.invoice_status === 'paid'
+                              ? 'bg-green-200 text-green-700'
+                              : ''
+                          "
                         >
                           {{ invoice?.invoice_status }}
                         </span>
