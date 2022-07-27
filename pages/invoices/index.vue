@@ -65,13 +65,8 @@
                     <th class="px-4 py-3">Actions</th>
                   </tr>
                 </thead>
-                <h1
-                  v-if="orderedInvoices.error"
-                  class="mt-12 text-center text-xl text-gray-700 md:text-2xl"
-                >
-                  {{ orderedInvoices.error }}
-                </h1>
-                <tbody v-else class="divide-y bg-white">
+
+                <tbody class="divide-y bg-white">
                   <tr
                     v-for="invoice in orderedInvoices"
                     :key="invoice.id"
@@ -169,8 +164,7 @@ import { useInvoiceStore } from '@/store/invoices'
 const { getAllInvoices, fetchInvoices } = useInvoiceStore()
 fetchInvoices()
 const orderedInvoices = computed(() => {
-  console.log(getAllInvoices.invoiceList)
-  if (!getAllInvoices.invoiceList?.invoices) return getAllInvoices.invoiceList
+  if (!getAllInvoices.invoiceList?.invoices) return []
   return getAllInvoices.invoiceList?.invoices.sort(
     (a: any, b: any) => b.created_at?.seconds - a.created_at?.seconds
   )

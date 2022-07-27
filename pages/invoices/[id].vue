@@ -89,9 +89,9 @@
           <span class="sr-only">Loading...</span>
         </div>
       </div>
-      <div v-else class="grid grid-cols-12 gap-4">
+      <div v-else class="mx-auto flex w-full flex-wrap justify-center gap-4">
         <div
-          class="col-span-12 max-w-[880px] rounded-2xl bg-white p-4 shadow-lg shadow-gray-200 lg:my-6 2xl:col-span-8 2xl:col-start-3"
+          class="w-full max-w-[880px] flex-1 rounded-2xl bg-white p-4 shadow-xl shadow-gray-200 lg:my-6 2xl:col-span-8 2xl:col-start-3"
         >
           <div class="space-y-6 overflow-hidden p-4">
             <div class="sm:flex">
@@ -288,6 +288,186 @@
                 </div>
                 <div class="text-base font-bold text-gray-900">
                   ${{ invoice.invoice_data.cost.grandTotal }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="w-full rounded-lg bg-white p-4 shadow sm:p-6 lg:my-6 xl:w-auto xl:p-8"
+        >
+          <div class="mb-4 flex items-center justify-between">
+            <div>
+              <h3 class="mb-2 text-xl font-bold text-gray-900">Transactions</h3>
+              <span class="text-base font-normal text-gray-500"
+                >This is a list of transactions</span
+              >
+            </div>
+            <div class="flex-shrink-0">
+              <a
+                href="#"
+                class="rounded-lg p-2 text-sm font-medium text-cyan-600 hover:bg-gray-100"
+                >View all</a
+              >
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-col">
+            <div class="overflow-x-auto rounded-lg">
+              <div class="inline-block min-w-full align-middle">
+                <div class="overflow-hidden shadow sm:rounded-lg">
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th
+                          scope="col"
+                          class="p-4 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                        >
+                          Transaction
+                        </th>
+                        <th
+                          scope="col"
+                          class="p-4 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                        >
+                          Date &amp; Time
+                        </th>
+                        <th
+                          scope="col"
+                          class="p-4 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                        >
+                          Amount
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                      <tr>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-normal text-gray-900"
+                        >
+                          Payment from
+                          <span class="font-semibold">Bonnie Green</span>
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
+                        >
+                          Apr 23 ,2021
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
+                        >
+                          $2300
+                        </td>
+                      </tr>
+                      <tr class="bg-gray-50">
+                        <td
+                          class="rounded-left whitespace-nowrap rounded-lg p-4 text-sm font-normal text-gray-900"
+                        >
+                          Payment refund to
+                          <span class="font-semibold">#00910</span>
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
+                        >
+                          Apr 23 ,2021
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
+                        >
+                          -$670
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-normal text-gray-900"
+                        >
+                          Payment failed from
+                          <span class="font-semibold">#087651</span>
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
+                        >
+                          Apr 18 ,2021
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
+                        >
+                          $234
+                        </td>
+                      </tr>
+                      <tr class="bg-gray-50">
+                        <td
+                          class="rounded-left whitespace-nowrap rounded-lg p-4 text-sm font-normal text-gray-900"
+                        >
+                          Payment from
+                          <span class="font-semibold">Lana Byrd</span>
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
+                        >
+                          Apr 15 ,2021
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
+                        >
+                          $5000
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-normal text-gray-900"
+                        >
+                          Payment from
+                          <span class="font-semibold">Jese Leos</span>
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
+                        >
+                          Apr 15 ,2021
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
+                        >
+                          $2300
+                        </td>
+                      </tr>
+                      <tr class="bg-gray-50">
+                        <td
+                          class="rounded-left whitespace-nowrap rounded-lg p-4 text-sm font-normal text-gray-900"
+                        >
+                          Payment from
+                          <span class="font-semibold">THEMESBERG LLC</span>
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
+                        >
+                          Apr 11 ,2021
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
+                        >
+                          $560
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-normal text-gray-900"
+                        >
+                          Payment from
+                          <span class="font-semibold">Lana Lysle</span>
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
+                        >
+                          Apr 6 ,2021
+                        </td>
+                        <td
+                          class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
+                        >
+                          $1437
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

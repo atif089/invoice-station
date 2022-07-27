@@ -31,6 +31,8 @@ export default defineEventHandler(async (event) => {
     invoice_status: 'pending',
     invoice_data: body?.invoice_data,
     created_at: Timestamp.now(),
+    iban: body.iban,
+    issuing_id: body.issuing_id,
   }
 
   const docRef = doc(db, `invoices`, invoiceId)
