@@ -144,7 +144,7 @@
                     :key="account"
                     :value="account"
                   >
-                    {{ account }}
+                    {{ account.split(' ')[0] }}
                   </option>
                 </FormKit>
               </div>
@@ -339,7 +339,8 @@ const addItem = () => {
   numberOfItems.value++
 }
 
-const { getAllWallets } = useWalletStore()
+const { getAllWallets, fetchAllWallets } = useWalletStore()
+fetchAllWallets()
 const { fetchAllAccounts, getAllAccounts, refreshState } = useAccountStore()
 const walletId = ref<string>('')
 const getAccounts = (event: any) => {
@@ -350,7 +351,7 @@ const getAccounts = (event: any) => {
 
 const vIbanAccounts = computed(() => {
   return getAllAccounts?.bank_accounts?.data?.data?.bank_accounts.map(
-    (account) => account.account_id
+    (account) => account.account_id + ' ' + account.issuing_id
   )
 })
 </script>

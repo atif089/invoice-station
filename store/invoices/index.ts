@@ -40,14 +40,10 @@ export interface InvoiceAdd {
 export interface InvoiceState {
   invoiceList: Invoice[]
   loading: boolean
-  singleInvoice: InvoiceAdd
-  pending: boolean
 }
 const state = (): InvoiceState => ({
   invoiceList: [],
   loading: true,
-  singleInvoice: {},
-  pending: true,
 })
 
 const getters = {
@@ -63,18 +59,13 @@ const actions = {
     console.log(data, pending)
   },
   fetchInvoices() {
-    const { data, pending } = useFetch('/api/invoices')
+    const { data, pending, refresh } = useFetch('/api/invoices')
     // @ts-ignore
     this.invoiceList = data
     // @ts-ignore
     this.loading = pending
-  },
-  async getById(id: string) {
-    const { data, pending } = useFetch(`/api/invoice/${id}`)
-    // @ts-ignore
-    this.singleInvoice = data
-    // @ts-ignore
-    this.pending = pending
+
+    refresh()
   },
 }
 

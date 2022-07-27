@@ -46,11 +46,11 @@
     </div>
 
     <Transition name="fade" mode="out-in">
-      <div
-        v-if="getAllInvoices.pending"
-        class="flex h-[50vh] items-center justify-center"
-      >
-        <div role="status">
+      <div v-if="getInvoice.loading">
+        <div
+          class="flex min-h-[50vh] items-center justify-center"
+          role="status"
+        >
           <svg
             class="mr-2 inline h-20 w-20 animate-spin fill-cyan-600 text-gray-200"
             viewBox="0 0 100 101"
@@ -121,7 +121,7 @@
                   </g>
                 </svg>
                 <div class="space-y-1">
-                  <div class="text-lg font-semibold text-gray-900">
+                  <div class="text-lg font-semibold capitalize text-gray-900">
                     {{ invoice.invoice_data.freelancer.last_name }}
                     {{ invoice.invoice_data.freelancer.first_name }}
                   </div>
@@ -138,7 +138,10 @@
             </div>
             <div>
               <h1 class="text-center text-lg font-semibold text-gray-900">
-                VIBAN Account No: {{ invoice.invoice_data.vIban }}
+                VIBAN Account No:
+                {{ invoice.invoice_data.vIban.split(' ')[0] }} <br />
+                Issuing Id:
+                {{ invoice.invoice_data.vIban.split(' ')[1] }} <br />
               </h1>
             </div>
             <div class="sm:w-72">
@@ -275,10 +278,11 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
-import { useInvoiceStore } from '@/store/invoices'
-const { getById, getAllInvoices } = useInvoiceStore()
+import { useSingleInvoiceStore } from '@/store/invoices/invoice'
+const { getInvoice, getById } = useSingleInvoiceStore()
 const route = useRoute()
 const invoiceId: string | any = route.params.id
 getById(invoiceId)
-const invoice = computed(() => getAllInvoices?.singleInvoice)
+
+const invoice = computed(() => getInvoice?.singleInvoice)
 </script>

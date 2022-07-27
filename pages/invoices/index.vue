@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="main">
-    <div>
+    <div class="ml-0 xl:ml-20">
       <div class="mb-6 flex max-w-screen-2xl items-center justify-between">
         <h1 class="text-xl font-semibold text-gray-800 sm:text-2xl">
           Invoices
@@ -29,11 +29,11 @@
       <div class="shadow-xs w-full overflow-hidden rounded-lg">
         <div class="w-full overflow-x-auto">
           <Transition name="fade" mode="out-in">
-            <div
-              v-if="getAllInvoices.loading"
-              class="flex h-[50vh] items-center justify-center"
-            >
-              <div role="status">
+            <div v-if="getAllInvoices.loading">
+              <div
+                class="flex min-h-[50vh] items-center justify-center"
+                role="status"
+              >
                 <svg
                   class="mr-2 inline h-20 w-20 animate-spin fill-cyan-600 text-gray-200"
                   viewBox="0 0 100 101"
@@ -160,7 +160,7 @@
 import { useInvoiceStore } from '@/store/invoices'
 const { getAllInvoices, fetchInvoices } = useInvoiceStore()
 fetchInvoices()
-
+getAllInvoices.singleInvoice = {}
 const orderedInvoices = computed(() => {
   return getAllInvoices.invoiceList?.invoices.sort(
     (a: any, b: any) => b.created_at?.seconds - a.created_at?.seconds
