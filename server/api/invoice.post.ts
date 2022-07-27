@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore'
+import { doc, setDoc, Timestamp } from 'firebase/firestore'
 import WordArray from 'crypto-js/lib-typedarrays'
 import { db } from '@/utils/firestore'
 
