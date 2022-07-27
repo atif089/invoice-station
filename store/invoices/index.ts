@@ -46,12 +46,12 @@ export interface InvoiceState {
 const state = (): InvoiceState => ({
   invoiceList: [],
   loading: true,
-  singleInvoice: {} as InvoiceAdd,
+  singleInvoice: {},
   pending: true,
 })
 
 const getters = {
-  getOrderedInvoices: (state: InvoiceState) => state,
+  getAllInvoices: (state: InvoiceState) => state,
 }
 const actions = {
   async createInvoice(newInvoice: InvoiceAdd) {
@@ -70,7 +70,7 @@ const actions = {
     this.loading = pending
   },
   async getById(id: string) {
-    const { data, pending } = await useFetch(`/api/invoice/${id}`)
+    const { data, pending } = useFetch(`/api/invoice/${id}`)
     // @ts-ignore
     this.singleInvoice = data
     // @ts-ignore

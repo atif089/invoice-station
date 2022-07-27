@@ -44,9 +44,10 @@
         </a>
       </div>
     </div>
+
     <Transition name="fade" mode="out-in">
       <div
-        v-if="getOrderedInvoices.pending"
+        v-if="getAllInvoices.pending"
         class="flex h-[50vh] items-center justify-center"
       >
         <div role="status">
@@ -130,7 +131,7 @@
                     {{ invoice.invoice_data.freelancer.country }}
                   </address>
                 </div>
-                <div class="text-sm font-normal text-gray-500">
+                <div class="text-md font-semibold text-gray-700">
                   {{ invoice.invoice_data.invoice_date }}
                 </div>
               </div>
@@ -199,10 +200,12 @@
                           :key="index"
                         >
                           <td class="whitespace-nowrap p-4 text-sm font-normal">
-                            <div class="text-base font-semibold">
+                            <div class="text-base font-semibold capitalize">
                               {{ item.name }}
                             </div>
-                            <div class="text-sm font-normal text-gray-500">
+                            <div
+                              class="text-sm font-normal capitalize text-gray-500"
+                            >
                               {{ item.description }}
                             </div>
                           </td>
@@ -273,10 +276,9 @@
 </template>
 <script setup lang="ts">
 import { useInvoiceStore } from '@/store/invoices'
+const { getById, getAllInvoices } = useInvoiceStore()
 const route = useRoute()
-const { getById, getOrderedInvoices } = useInvoiceStore()
-
-await getById(route.params.id)
-const invoice = await getOrderedInvoices.singleInvoice
-console.log(invoice)
+const invoiceId: string | any = route.params.id
+getById(invoiceId)
+const invoice = computed(() => getAllInvoices?.singleInvoice)
 </script>

@@ -30,7 +30,7 @@
         <div class="w-full overflow-x-auto">
           <Transition name="fade" mode="out-in">
             <div
-              v-if="getOrderedInvoices.loading"
+              v-if="getAllInvoices.loading"
               class="flex h-[50vh] items-center justify-center"
             >
               <div role="status">
@@ -67,7 +67,7 @@
                 </thead>
                 <tbody class="divide-y bg-white">
                   <tr
-                    v-for="invoice in getOrderedInvoices.invoiceList.invoices"
+                    v-for="invoice in orderedInvoices"
                     :key="invoice.id"
                     class="text-gray-700"
                   >
@@ -101,7 +101,11 @@
                       </div>
                     </td>
                     <td class="px-4 py-3 text-sm">
-                      ${{ invoice?.invoice_data?.cost?.grandTotal || 1000 }}
+                      ${{
+                        (
+                          +invoice?.invoice_data?.cost?.grandTotal || 1000
+                        ).toFixed(2)
+                      }}
                     </td>
                     <td class="px-4 py-3 text-xs">
                       <span
@@ -154,7 +158,12 @@
 </template>
 <script setup lang="ts">
 import { useInvoiceStore } from '@/store/invoices'
-const { getOrderedInvoices, fetchInvoices } = useInvoiceStore()
+const { getAllInvoices, fetchInvoices } = useInvoiceStore()
 fetchInvoices()
-console.log(getOrderedInvoices.invoiceList)
+
+const orderedInvoices = computed(() => {
+  return getAllInvoices.invoiceList?.invoices.sort(
+    (a: any, b: any) => b.created_at?.seconds - a.created_at?.seconds
+  )
+})
 </script>

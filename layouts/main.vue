@@ -19,15 +19,6 @@
 const sidebarActive = ref<boolean>(false)
 
 provide('sidebarActive', sidebarActive)
-
-// const router = useRouter()
-
-// router.beforeEach((to, from) => {
-//   const conditionIsMet = false
-//   if (to.path === '/original/path' && !conditionIsMet) {
-//     return '/redirect/to/path'
-//   }
-// })
 </script>
 
 <style>

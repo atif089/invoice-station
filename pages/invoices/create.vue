@@ -183,6 +183,7 @@
                           label="Price"
                           placeholder="$200"
                           type="number"
+                          :value="0"
                           min="0"
                           validation="required|min:0"
                         />
@@ -195,6 +196,7 @@
                           placeholder="1"
                           type="number"
                           min="1"
+                          value="1"
                           validation="required|min:1"
                         />
                       </div>
@@ -205,6 +207,7 @@
                           label="Discount"
                           placeholder="20%"
                           type="number"
+                          value="0"
                           min="0"
                           validation="min:0|max:100"
                         />
@@ -242,11 +245,17 @@
           </div>
         </FormKit>
         <div class="relative -top-8 ml-48 flex w-full gap-5">
-          <h1 class="text-2xl">SubTotal: ${{ calculateTotal.subTotal }}</h1>
-          <h1 class="text-2xl">Discounts: ${{ calculateTotal.discounts }}</h1>
+          <h1 class="text-2xl">
+            SubTotal: ${{ calculateTotal.subTotal.toFixed(2) }}
+          </h1>
+          <h1 class="text-2xl">
+            Discounts: ${{ calculateTotal.discounts.toFixed(2) }}
+          </h1>
           <h1 class="text-2xl">
             Total:
-            <span class="text-cyan-600">${{ calculateTotal.grandTotal }}</span>
+            <span class="text-cyan-600"
+              >${{ calculateTotal.grandTotal.toFixed(2) }}</span
+            >
           </h1>
         </div>
       </div>
@@ -256,7 +265,7 @@
 <script setup lang="ts">
 import { reset } from '@formkit/core'
 import { useInvoiceStore, InvoiceAdd, invoiceItemCost } from '@/store/invoices'
-import { useProfileStore, Profile } from '@/store/profile'
+import { useProfileStore } from '@/store/profile'
 
 import { useWalletStore } from '@/store/wallets'
 import { useAccountStore } from '@/store/accounts'
@@ -277,16 +286,16 @@ const allItems = reactive<invoiceItemCost[]>([
 const calculateTotal = computed(() => {
   return allItems.reduce(
     (acc, curr) => {
-      const { price, quantity, discount } = curr
-      const subtotal: number = +price * +quantity
-      const discountPercentage = (+discount / 100) * subtotal
+      const { price = 0, quantity = 1, discount = 0 } = curr
+      const subtotal: number = +(+price * +quantity).toFixed(2)
+      const discountPercentage = +((+discount / 100) * subtotal).toFixed(2)
       const total = +(subtotal - discountPercentage).toFixed(2)
       curr.discountPrice = discountPercentage
       curr.total = total
-      console.log(curr)
-      acc.grandTotal = acc.grandTotal + total
-      acc.subTotal = acc.subTotal + subtotal
-      acc.discounts = acc.discounts + discountPercentage
+
+      acc.grandTotal = +(acc.grandTotal + total).toFixed(2)
+      acc.subTotal = +(acc.subTotal + subtotal).toFixed(2)
+      acc.discounts = +(acc.discounts + discountPercentage).toFixed(2)
 
       return acc
     },
@@ -330,8 +339,6 @@ const addItem = () => {
   numberOfItems.value++
 }
 
-console.log(getProfile.profile)
-
 const { getAllWallets } = useWalletStore()
 const { fetchAllAccounts, getAllAccounts, refreshState } = useAccountStore()
 const walletId = ref<string>('')
@@ -346,5 +353,4 @@ const vIbanAccounts = computed(() => {
     (account) => account.account_id
   )
 })
-console.log(getAllAccounts)
 </script>
