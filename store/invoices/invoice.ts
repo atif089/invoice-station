@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
-import { InvoiceAdd, invoiceItemCost, InvoiceItem } from './index'
+import { InvoiceAdd } from './index'
 export interface InvoiceState {
   singleInvoice: InvoiceAdd
   loading: boolean
 }
 const state = (): InvoiceState => ({
-  singleInvoice: {},
+  singleInvoice: {} as InvoiceAdd,
   loading: true,
 })
 
@@ -19,7 +19,6 @@ const actions = {
     this.singleInvoice = data
     // @ts-ignore
     this.loading = pending
-    // @ts-ignore
     refresh()
   },
 }

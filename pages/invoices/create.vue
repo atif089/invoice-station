@@ -175,7 +175,7 @@
                 >
                   <option selected>choose your wallet</option>
                   <option
-                    v-for="(wallet, index) in getAllWallets.walletList.data"
+                    v-for="wallet in getAllWallets.walletList.data"
                     :key="wallet.id"
                     :value="wallet.id"
                   >
@@ -285,13 +285,15 @@
 </template>
 <script setup lang="ts">
 import { reset } from '@formkit/core'
-import { useInvoiceStore, InvoiceAdd, invoiceItemCost } from '@/store/invoices'
+import { useInvoiceStore, invoiceItemCost } from '@/store/invoices'
 import { useProfileStore } from '@/store/profile'
-
 import { useWalletStore } from '@/store/wallets'
 
 const { getProfile, fetchProfile } = useProfileStore()
 fetchProfile()
+const { getAllWallets, fetchAllWallets } = useWalletStore()
+fetchAllWallets()
+
 const { createInvoice } = useInvoiceStore()
 const numberOfItems = ref<number>(1)
 const allItems = reactive<invoiceItemCost[]>([
@@ -327,12 +329,13 @@ const calculateTotal = computed(() => {
   )
 })
 
-const create = async (formData: InvoiceAdd) => {
+const create = async (formData: any) => {
   const walletId = formData.wallet
   const newIbanAccount = await createAccount(walletId)
   console.log(newIbanAccount)
 
-  for (const [key, value] of Object.entries(formData.items)) {
+  // append price calculation for each item
+  for (const [key, value] of Object.entries(formData.items) as any) {
     const index = +key.split('_')[1] - 1
 
     formData.items[key] = {
@@ -341,6 +344,8 @@ const create = async (formData: InvoiceAdd) => {
       cost: allItems[index],
     }
   }
+
+  // append grand total calculation of all items
   formData.cost = {
     ...calculateTotal.value,
   }
@@ -354,6 +359,7 @@ const create = async (formData: InvoiceAdd) => {
   alert('Invoice created successfully!')
 }
 
+// handle adding new items
 const addItem = () => {
   allItems.push({
     price: 0,
@@ -365,10 +371,8 @@ const addItem = () => {
   numberOfItems.value++
 }
 
-const { getAllWallets, fetchAllWallets } = useWalletStore()
-fetchAllWallets()
-
-const createAccount = async (walletId) => {
+// create new unique vIban account
+const createAccount = async (walletId: string) => {
   const response: any = await $fetch(`/api/wallet/${walletId}/vIban`, {
     method: 'POST',
   })

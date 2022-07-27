@@ -1,13 +1,5 @@
 import { defineStore } from 'pinia'
 
-export interface Invoice {
-  id: string
-  clientName: string
-  cost: number
-  status: 'Approved' | 'Pending' | 'Denied' | 'Expired'
-  createdAt: Date
-}
-
 export interface invoiceItemCost {
   price: number
   quantity: number
@@ -21,6 +13,10 @@ export interface InvoiceItem {
   cost: invoiceItemCost
 }
 export interface InvoiceAdd {
+  invoice_id: string
+  iban: string
+  issuing_id: string
+  invoice_status: string
   invoice_data: {
     city: string
     client_email: string
@@ -35,14 +31,30 @@ export interface InvoiceAdd {
     items: {
       [key: string]: InvoiceItem
     }
+    freelancer: {
+      first_name: string
+      last_name: string
+      address: string
+      city: string
+      country: string
+    }
+    cost: {
+      subTotal: number
+      grandTotal: number
+      discounts: number
+    }
   }
 }
 export interface InvoiceState {
-  invoiceList: Invoice[]
+  invoiceList: {
+    invoices: InvoiceAdd[]
+  }
   loading: boolean
 }
 const state = (): InvoiceState => ({
-  invoiceList: [],
+  invoiceList: {
+    invoices: [],
+  },
   loading: true,
 })
 
@@ -50,7 +62,7 @@ const getters = {
   getAllInvoices: (state: InvoiceState) => state,
 }
 const actions = {
-  async createInvoice(newInvoice: InvoiceAdd) {
+  async createInvoice(newInvoice: any) {
     console.log(newInvoice)
     const { data, pending } = await useFetch('/api/invoice', {
       method: 'POST',

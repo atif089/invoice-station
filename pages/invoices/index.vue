@@ -69,7 +69,7 @@
                 <tbody class="divide-y bg-white">
                   <tr
                     v-for="invoice in orderedInvoices"
-                    :key="invoice.id"
+                    :key="invoice.invoice_id"
                     class="text-gray-700"
                   >
                     <td class="px-4 py-3">
