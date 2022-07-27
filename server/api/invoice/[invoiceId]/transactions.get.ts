@@ -6,17 +6,19 @@ type HTTPResponse = {
 }
 
 export default defineEventHandler(async (event) => {
-  const invoiceId = event?.context?.params?.invoiceId
+  // TODO: fix route
+  // TODO: it should be event?.context?.params?.issuingId
+  const issuingId = event?.context?.params?.invoiceId
   const response: HTTPResponse = { status: '' }
 
-  if (!invoiceId) {
+  if (!issuingId) {
     response.status = `400`
     response.error = `Missing invoiceId`
     return response
   }
 
   const invoicesRef = collection(db, 'transactions')
-  const q = query(invoicesRef, where('issuing_id', '==', invoiceId))
+  const q = query(invoicesRef, where('issuing_id', '==', issuingId))
   const qSnap = await getDocs(q)
 
   const transactions = []
