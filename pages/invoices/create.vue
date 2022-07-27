@@ -1,6 +1,24 @@
 <template>
   <NuxtLayout name="main">
     <div class="px-4">
+      <div
+        class="ml-2 inline-block cursor-pointer text-cyan-600 hover:text-cyan-500"
+        @click="goBack"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="mb-1 h-12 w-12"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+          />
+        </svg>
+      </div>
       <div class="mb-6 rounded-2xl bg-white p-4 shadow-lg shadow-gray-200">
         <h3 class="mb-4 text-xl font-bold">Create New Invoice</h3>
         <FormKit
@@ -354,4 +372,7 @@ const vIbanAccounts = computed(() => {
     (account) => account.account_id + ' ' + account.issuing_id
   )
 })
+
+const router = useRouter()
+const goBack = () => router.back()
 </script>

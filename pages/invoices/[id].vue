@@ -1,47 +1,67 @@
 <template>
   <NuxtLayout name="main">
     <div
-      class="items-center space-y-4 sm:inline-flex sm:space-x-4 sm:space-y-0"
+      class="flex w-full max-w-screen-2xl items-center justify-start space-y-4 sm:space-x-4 sm:space-y-0"
     >
-      <div>
-        <a
-          href="#"
-          class="flex items-center rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 sm:inline-flex"
+      <div
+        class="ml-4 inline-block cursor-pointer text-cyan-600 hover:text-cyan-500"
+        @click="goBack"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="mb-1 h-12 w-12"
+          viewBox="0 0 16 16"
         >
-          <svg
-            class="mr-2 -ml-1 h-6 w-6"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          Download Invoice
-        </a>
+          <path
+            fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+          />
+        </svg>
       </div>
-      <div>
-        <a
-          href="#"
-          class="transition-transformsm:w-auto inline-flex w-full items-center justify-center rounded-lg border border-gray-300 bg-white py-2 px-3 text-center text-sm font-medium text-gray-900 hover:scale-[1.02] hover:bg-gray-100"
-        >
-          <svg
-            class="mr-2 -ml-1 h-6 w-6"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+      <div class="mx-auto flex flex-1 gap-4">
+        <div class="ml-auto">
+          <a
+            href="#"
+            class="flex items-center rounded-lg bg-cyan-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 sm:inline-flex"
           >
-            <path
-              fill-rule="evenodd"
-              d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          Print
-        </a>
+            <svg
+              class="mr-2 -ml-1 h-6 w-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Download Invoice
+          </a>
+        </div>
+        <div class="mr-auto">
+          <a
+            href="#"
+            class="transition-transformsm:w-auto inline-flex w-full items-center justify-center rounded-lg border border-gray-300 bg-white py-2 px-3 text-center text-sm font-medium text-gray-900 hover:scale-[1.02] hover:bg-gray-100"
+          >
+            <svg
+              class="mr-2 -ml-1 h-6 w-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Print
+          </a>
+        </div>
       </div>
     </div>
 
@@ -120,7 +140,7 @@
                     ></path>
                   </g>
                 </svg>
-                <div class="space-y-1">
+                <div class="space-y-1 capitalize">
                   <div class="text-lg font-semibold capitalize text-gray-900">
                     {{ invoice.invoice_data.freelancer.last_name }}
                     {{ invoice.invoice_data.freelancer.first_name }}
@@ -144,7 +164,7 @@
                 {{ invoice.invoice_data.vIban.split(' ')[1] }} <br />
               </h1>
             </div>
-            <div class="sm:w-72">
+            <div class="capitalize sm:w-72">
               <div class="mb-4 text-base font-bold uppercase text-gray-900">
                 Bill to
               </div>
@@ -285,4 +305,7 @@ const invoiceId: string | any = route.params.id
 getById(invoiceId)
 
 const invoice = computed(() => getInvoice?.singleInvoice)
+
+const router = useRouter()
+const goBack = () => router.back()
 </script>
