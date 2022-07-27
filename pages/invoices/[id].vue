@@ -159,9 +159,9 @@
             <div>
               <h1 class="text-center text-lg font-semibold text-gray-900">
                 VIBAN Account No:
-                {{ invoice.invoice_data.vIban.split(' ')[0] }} <br />
+                {{ invoice.iban }} <br />
                 Issuing Id:
-                {{ invoice.invoice_data.vIban.split(' ')[1] }} <br />
+                {{ invoice.issuing_id }} <br />
               </h1>
             </div>
             <div class="capitalize sm:w-72">

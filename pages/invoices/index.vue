@@ -65,7 +65,13 @@
                     <th class="px-4 py-3">Actions</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y bg-white">
+                <h1
+                  v-if="orderedInvoices.error"
+                  class="mt-12 text-center text-xl text-gray-700 md:text-2xl"
+                >
+                  {{ orderedInvoices.error }}
+                </h1>
+                <tbody v-else class="divide-y bg-white">
                   <tr
                     v-for="invoice in orderedInvoices"
                     :key="invoice.id"
@@ -91,9 +97,11 @@
                         <div>
                           <NuxtLink
                             :to="`/invoices/${invoice.invoice_id}`"
-                            class="font-semibold capitalize"
+                            class="font-semibold capitalize hover:text-cyan-600"
                             >{{ invoice.invoice_data.client_name }}
-                            <p class="text-xs text-gray-600">
+                            <p
+                              class="text-xs text-gray-600 hover:text-cyan-600"
+                            >
                               {{ invoice.invoice_id }}
                             </p>
                           </NuxtLink>
@@ -160,8 +168,9 @@
 import { useInvoiceStore } from '@/store/invoices'
 const { getAllInvoices, fetchInvoices } = useInvoiceStore()
 fetchInvoices()
-getAllInvoices.singleInvoice = {}
 const orderedInvoices = computed(() => {
+  console.log(getAllInvoices.invoiceList)
+  if (!getAllInvoices.invoiceList?.invoices) return getAllInvoices.invoiceList
   return getAllInvoices.invoiceList?.invoices.sort(
     (a: any, b: any) => b.created_at?.seconds - a.created_at?.seconds
   )

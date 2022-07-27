@@ -2,7 +2,7 @@
   <NuxtLayout name="main">
     <div class="px-4">
       <div
-        class="ml-2 inline-block cursor-pointer text-cyan-600 hover:text-cyan-500"
+        class="create-invoice ml-2 inline-block cursor-pointer text-cyan-600 hover:text-cyan-500"
         @click="goBack"
       >
         <svg
@@ -27,7 +27,7 @@
           submit-label="Create Invoice"
           @submit="create"
         >
-          <div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div class="col-span-1">
               <div class="mb-4">
                 <FormKit
@@ -82,26 +82,40 @@
                 </div>
               </div>
               <div class="mt-5 border-t border-dashed border-gray-500 pt-5">
-                <label
-                  for="default"
-                  class="mb-2 block text-sm font-medium text-gray-900"
-                  >Choose Wallet</label
+                <!-- <FormKit
+                  type="select"
+                  label="Select VIBAN Account"
+                  name="vIban"
+                  validation="required"
+                  placeholder="choose account"
+                  :options="['chooose account']"
                 >
-                <select
-                  id="default"
-                  class="text-md shadow-lg-sm block w-full max-w-sm rounded-lg border border-gray-300 p-2.5 text-gray-900 focus:border-cyan-600 focus:ring-2 focus:ring-cyan-50 sm:text-sm"
-                  required
-                  @change="getAccounts"
-                >
-                  <option selected>Choose a wallet</option>
+                  <option disabled selected>Select your vIban Account</option>
                   <option
-                    v-for="wallet in getAllWallets.walletList.data"
-                    :key="wallet.id"
-                    :value="wallet.id"
+                    v-for="account in vIbanAccounts"
+                    :key="account"
+                    :value="account"
                   >
-                    {{ wallet.id }}
+                    {{ account.split(' ')[0] }}
                   </option>
-                </select>
+                </FormKit> -->
+                <div class="">
+                  <h1 class="text-xl">
+                    Subtotal: ${{ calculateTotal.subTotal.toFixed(2) }}
+                  </h1>
+                  <h1 class="text-xl">
+                    Discount: ${{ calculateTotal.discounts.toFixed(2) }}
+                  </h1>
+                  <h1
+                    class="mt-2 mb-6 inline-block border-t-2 border-dashed border-cyan-600 pt-2 text-2xl"
+                  >
+                    Total:
+                    <span class="text-3xl text-cyan-600"
+                      >${{ calculateTotal.grandTotal.toFixed(2) }}</span
+                    >
+                    &nbsp;
+                  </h1>
+                </div>
               </div>
             </div>
             <div class="col-span-1">
@@ -147,28 +161,31 @@
                   validation=""
                 />
               </div>
-              <div class="mt-5 border-t border-dashed border-gray-500 pt-5">
+              <div
+                v-if="getAllWallets?.walletList?.data"
+                class="mt-5 border-t border-dashed border-gray-500 pt-5"
+              >
                 <FormKit
                   type="select"
-                  label="Select VIBAN Account"
-                  name="vIban"
+                  label="Choose your Wallet"
+                  name="wallet"
                   validation="required"
-                  placeholder="choose account"
-                  :options="['chooose account']"
+                  placeholder="Choose a wallet"
+                  :options="['choose a wallet']"
                 >
-                  <option disabled selected>Select your vIban Account</option>
+                  <option selected>choose your wallet</option>
                   <option
-                    v-for="account in vIbanAccounts"
-                    :key="account"
-                    :value="account"
+                    v-for="(wallet, index) in getAllWallets.walletList.data"
+                    :key="wallet.id"
+                    :value="wallet.id"
                   >
-                    {{ account.split(' ')[0] }}
+                    {{ wallet.id }}
                   </option>
                 </FormKit>
               </div>
             </div>
             <div
-              class="col-span-1 h-[45vh] overflow-y-auto rounded-lg border border-dashed border-gray-300 p-3"
+              class="col-span-1 h-[50vh] overflow-y-auto rounded-lg border border-dashed border-gray-300 p-3"
             >
               <FormKit type="group" name="items" class="col-span-1">
                 <div
@@ -262,20 +279,6 @@
             </div>
           </div>
         </FormKit>
-        <div class="relative -top-8 ml-48 flex w-full gap-5">
-          <h1 class="text-2xl">
-            SubTotal: ${{ calculateTotal.subTotal.toFixed(2) }}
-          </h1>
-          <h1 class="text-2xl">
-            Discounts: ${{ calculateTotal.discounts.toFixed(2) }}
-          </h1>
-          <h1 class="text-2xl">
-            Total:
-            <span class="text-cyan-600"
-              >${{ calculateTotal.grandTotal.toFixed(2) }}</span
-            >
-          </h1>
-        </div>
       </div>
     </div>
   </NuxtLayout>
@@ -286,7 +289,6 @@ import { useInvoiceStore, InvoiceAdd, invoiceItemCost } from '@/store/invoices'
 import { useProfileStore } from '@/store/profile'
 
 import { useWalletStore } from '@/store/wallets'
-import { useAccountStore } from '@/store/accounts'
 
 const { getProfile, fetchProfile } = useProfileStore()
 fetchProfile()
@@ -325,7 +327,11 @@ const calculateTotal = computed(() => {
   )
 })
 
-const create = (formData: InvoiceAdd) => {
+const create = async (formData: InvoiceAdd) => {
+  const walletId = formData.wallet
+  const newIbanAccount = await createAccount(walletId)
+  console.log(newIbanAccount)
+
   for (const [key, value] of Object.entries(formData.items)) {
     const index = +key.split('_')[1] - 1
 
@@ -341,6 +347,8 @@ const create = (formData: InvoiceAdd) => {
   console.log(formData)
   createInvoice({
     invoice_data: { ...formData, freelancer: { ...getProfile.profile } },
+    iban: newIbanAccount?.data?.bank_account.iban,
+    issuing_id: newIbanAccount?.data?.id,
   })
   reset('createInvoice')
   alert('Invoice created successfully!')
@@ -359,20 +367,16 @@ const addItem = () => {
 
 const { getAllWallets, fetchAllWallets } = useWalletStore()
 fetchAllWallets()
-const { fetchAllAccounts, getAllAccounts, refreshState } = useAccountStore()
-const walletId = ref<string>('')
-const getAccounts = (event: any) => {
-  walletId.value = event.target.value
-  fetchAllAccounts(walletId.value)
-  refreshState()
+
+const createAccount = async (walletId) => {
+  const response: any = await $fetch(`/api/wallet/${walletId}/vIban`, {
+    method: 'POST',
+  })
+  console.log(response)
+
+  return response
 }
-
-const vIbanAccounts = computed(() => {
-  return getAllAccounts?.bank_accounts?.data?.data?.bank_accounts.map(
-    (account) => account.account_id + ' ' + account.issuing_id
-  )
-})
-
 const router = useRouter()
 const goBack = () => router.back()
 </script>
+<style></style>
