@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="main">
-    <div class="ml-0 xl:ml-20">
+    <div class="ml-0 2xl:ml-20">
       <div class="mb-6 flex max-w-screen-2xl items-center justify-between">
         <h1 class="text-xl font-semibold text-gray-800 sm:text-2xl">
           Invoices

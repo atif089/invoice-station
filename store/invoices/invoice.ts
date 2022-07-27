@@ -3,10 +3,12 @@ import { InvoiceAdd } from './index'
 export interface InvoiceState {
   singleInvoice: InvoiceAdd
   loading: boolean
+  transactions: []
 }
 const state = (): InvoiceState => ({
   singleInvoice: {} as InvoiceAdd,
   loading: true,
+  transactions: [],
 })
 
 const getters = {
@@ -19,7 +21,15 @@ const actions = {
     this.singleInvoice = data
     // @ts-ignore
     this.loading = pending
+    console.log(data)
+    this.fetchTransactions(data.issuing_id)
     refresh()
+  },
+  fetchTransactions(id) {
+    const { data, pending, refresh } = useFetch(
+      `/api/invoice/${id}/transactions`
+    )
+    console.log(data)
   },
 }
 

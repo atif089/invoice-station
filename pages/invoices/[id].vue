@@ -309,7 +309,7 @@
                   Transactions
                 </h3>
                 <span class="text-base font-normal text-gray-500"
-                  >This is a list of transactions</span
+                  >List of transactions for this wallet</span
                 >
               </div>
               <div class="flex-shrink-0">
@@ -496,6 +496,15 @@ getById(invoiceId)
 
 const invoice = computed(() => getInvoice?.singleInvoice)
 
+const transactions = async () => {
+  const response = await $fetch(
+    `/api/invoice/${invoice.issuing_id}/transactions`
+  )
+  console.log(response, invoice.issuing_id)
+}
+onMounted(() => {
+  transactions()
+})
 const router = useRouter()
 const goBack = () => router.back()
 </script>
