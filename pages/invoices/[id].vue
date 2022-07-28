@@ -407,6 +407,7 @@
 import { InvoiceAdd } from '@/store/invoices/index'
 import { TransactionList } from '@/store/invoices/transactions'
 
+// Fetch single invoice using Invoice ID
 const getById = async (id: string) => {
   const response: InvoiceAdd = await $fetch(`/api/invoice/${id}`)
   const IssuingId = response.issuing_id
@@ -417,11 +418,11 @@ const getById = async (id: string) => {
   isLoading.value = false
 }
 
+// Fetch transactions using Issuing ID
 const fetchTransactions = async (id: string) => {
   const response: TransactionList = await $fetch(
     `/api/invoice/${id}/transactions`
   )
-
   transactions.value = response
 }
 

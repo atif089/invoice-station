@@ -45,7 +45,7 @@
               submit-label="Update Profile"
               @submit="update"
             >
-              <div class="grid grid-cols-6 gap-6">
+              <div class="mb-6 grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-3">
                   <FormKit
                     name="first_name"
@@ -137,7 +137,8 @@
                     validation="alpha_spaces:latin|length:4"
                   />
                 </div>
-                <div class="col-span-6 mb-6 sm:col-span-3">
+
+                <div class="col-span-6 sm:col-span-3">
                   <FormKit
                     name="zip_code"
                     label="Zip/Postal Code"
@@ -146,10 +147,26 @@
                     validation="length:6"
                   />
                 </div>
+                <div class="col-span-6 sm:col-span-3">
+                  <FormKit
+                    name="secrect_key"
+                    label="Secrect Key"
+                    placeholder="eg. 22112"
+                    validation="required"
+                  />
+                </div>
+                <div class="col-span-6 sm:col-span-3">
+                  <FormKit
+                    name="access_key"
+                    label="Access Key"
+                    placeholder="eg. 111_test_1"
+                    validation="required"
+                  />
+                </div>
               </div>
             </FormKit>
           </div>
-          <div class="mb-6 rounded-2xl bg-white p-4 shadow-lg shadow-gray-200">
+          <div class="rounded-2xl bg-white p-4 shadow-lg shadow-gray-200">
             <h3 class="mb-4 text-xl font-bold">Password information</h3>
             <form action="#">
               <div class="grid grid-cols-6 gap-6">

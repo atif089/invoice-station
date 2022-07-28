@@ -81,14 +81,7 @@
                   />
                 </div>
               </div>
-              <div class="mb-4">
-                <FormKit
-                  name="access_key"
-                  label="Access Key"
-                  placeholder="eg. 111_test_1"
-                  validation="required"
-                />
-              </div>
+
               <div class="mt-5 border-t border-dashed border-gray-500 pt-5">
                 <!-- <FormKit
                   type="select"
@@ -170,14 +163,7 @@
                   validation=""
                 />
               </div>
-              <div class="mb-4">
-                <FormKit
-                  name="secrect_key"
-                  label="Secrect Key"
-                  placeholder="eg. 22112"
-                  validation="required"
-                />
-              </div>
+
               <div
                 v-if="getAllWallets?.walletList?.data"
                 class="mt-5 border-t border-dashed border-gray-500 pt-5"
