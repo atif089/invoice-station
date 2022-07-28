@@ -303,7 +303,7 @@
             </div>
           </div>
           <div
-            v-show="isLoading === false && transactions.transactions.length > 0"
+            v-show="isLoading === false && transactions?.length > 0"
             class="w-full flex-1 rounded-lg bg-white p-4 shadow sm:p-6 lg:my-6 xl:w-auto xl:p-8"
           >
             <div class="mb-4 flex items-center justify-between">
@@ -353,9 +353,7 @@
                       </thead>
                       <tbody class="bg-white">
                         <tr
-                          v-for="(
-                            transaction, index
-                          ) in transactions.transactions"
+                          v-for="(transaction, index) in transactions"
                           :Key="transaction?.id"
                           :class="{ 'bg-gray-50': index % 2 === 0 }"
                           class="h-[80px] cursor-pointer transition-all"
@@ -407,7 +405,7 @@
 </template>
 <script setup lang="ts">
 import { InvoiceAdd } from '@/store/invoices/index'
-import { TransactionList } from '@/store/invoices/transactions'
+import { TransactionList, Transactions } from '@/store/invoices/transactions'
 
 // Fetch single invoice using Invoice ID
 const getById = async (id: string) => {
@@ -425,14 +423,14 @@ const fetchTransactions = async (id: string) => {
   const response: TransactionList = await $fetch(
     `/api/invoice/${id}/transactions`
   )
-  transactions.value = response
+  transactions.value = response?.transactions?.sort(
+    (a, b) => a.created_at - b.created_at
+  )
 }
 
 const isLoading = ref(true)
 const invoice = ref<InvoiceAdd>({} as InvoiceAdd)
-const transactions = ref<TransactionList>({
-  transactions: [],
-})
+const transactions = ref<Transactions[]>([])
 const route = useRoute()
 const invoiceId: string | any = route?.params?.id
 

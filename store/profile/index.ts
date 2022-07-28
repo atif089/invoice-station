@@ -45,6 +45,7 @@ const actions = {
         body: formData,
       })
       console.log(response)
+      alert('Profile Updated Successfully!')
     } catch (error) {
       console.error(error)
       alert('Something Went Wrong')

@@ -256,7 +256,6 @@ const { getProfile, fetchProfile, UpdateProfile } = useProfileStore()
 fetchProfile()
 const update = async (formData: Profile) => {
   await UpdateProfile(formData)
-  alert('Profile Updated Successfully!')
 }
 </script>
 <style>
