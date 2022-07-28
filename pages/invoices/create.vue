@@ -110,18 +110,18 @@
                 <div class="hidden md:block">
                   <h1 class="flex justify-between text-xl">
                     Subtotal:
-                    <span>${{ calculateTotal.subTotal.toFixed(2) }}</span>
+                    <span>€{{ calculateTotal.subTotal.toFixed(2) }}</span>
                   </h1>
                   <h1 class="flex justify-between text-xl">
                     Discount:
-                    <span>${{ calculateTotal.discounts.toFixed(2) }}</span>
+                    <span>€{{ calculateTotal.discounts.toFixed(2) }}</span>
                   </h1>
                   <h1
                     class="mt-2 mb-6 flex justify-between border-t-2 border-dashed border-cyan-600 pt-2 text-2xl"
                   >
                     Total:
                     <span class="text-3xl text-cyan-600"
-                      >${{ calculateTotal.grandTotal.toFixed(2) }}</span
+                      >€{{ calculateTotal.grandTotal.toFixed(2) }}</span
                     >
                   </h1>
                 </div>
@@ -141,7 +141,7 @@
                 <FormKit
                   name="payment_due"
                   label="Payment Due"
-                  placeholder="$99"
+                  placeholder="€99"
                   type="date"
                   :validation="`date_after:${new Date().toJSON().slice(0, 10)}`"
                 />
@@ -233,7 +233,7 @@
                           v-model.lazy.number="allItems[n - 1].price"
                           name="price"
                           label="Price"
-                          placeholder="$200"
+                          placeholder="€200"
                           type="number"
                           :value="0"
                           min="0"
@@ -297,17 +297,17 @@
           </div>
           <div class="mt-5 block md:hidden">
             <h1 class="flex justify-between text-xl">
-              Subtotal: <span>${{ calculateTotal.subTotal.toFixed(2) }}</span>
+              Subtotal: <span>€{{ calculateTotal.subTotal.toFixed(2) }}</span>
             </h1>
             <h1 class="flex justify-between text-xl">
-              Discount: <span>${{ calculateTotal.discounts.toFixed(2) }}</span>
+              Discount: <span>€{{ calculateTotal.discounts.toFixed(2) }}</span>
             </h1>
             <h1
               class="mt-2 mb-6 flex justify-between border-t-2 border-dashed border-cyan-600 pt-2 text-2xl"
             >
               Total:
               <span class="text-3xl text-cyan-600"
-                >${{ calculateTotal.grandTotal.toFixed(2) }}</span
+                >€{{ calculateTotal.grandTotal.toFixed(2) }}</span
               >
             </h1>
           </div>

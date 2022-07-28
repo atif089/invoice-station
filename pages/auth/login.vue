@@ -23,7 +23,7 @@
         <h2 class="text-2xl font-bold text-gray-900 lg:text-3xl">
           Sign in to platform
         </h2>
-        <form class="mt-8 space-y-6">
+        <form class="mt-8 space-y-6" @submit.prevent="">
           <div>
             <label
               for="email"

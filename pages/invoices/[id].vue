@@ -67,7 +67,7 @@
 
     <Transition name="fade" mode="out-in">
       <div>
-        <div v-show="getInvoice?.loading">
+        <div v-show="isLoading">
           <div
             class="flex min-h-[50vh] items-center justify-center"
             role="status"
@@ -91,7 +91,7 @@
           </div>
         </div>
         <div
-          v-show="!getInvoice?.loading"
+          v-show="isLoading === false"
           class="mx-auto flex w-full flex-wrap items-start justify-center gap-4"
         >
           <div
@@ -301,10 +301,7 @@
             </div>
           </div>
           <div
-            v-if="
-              getInvoice.transactionsPending === false &&
-              transactions.length > 0
-            "
+            v-show="isLoading === false && transactions.transactions.length > 0"
             class="w-full flex-1 rounded-lg bg-white p-4 shadow sm:p-6 lg:my-6 xl:w-auto xl:p-8"
           >
             <div class="mb-4 flex items-center justify-between">
@@ -354,7 +351,9 @@
                       </thead>
                       <tbody class="bg-white">
                         <tr
-                          v-for="(transaction, index) in transactions"
+                          v-for="(
+                            transaction, index
+                          ) in transactions.transactions"
                           :Key="transaction?.id"
                           :class="{ 'bg-gray-50': index % 2 === 0 }"
                           class="h-[80px] cursor-pointer transition-all"
@@ -365,14 +364,15 @@
                             <p class="">
                               Payment Deposited to
                               <span class="font-semibold">{{
-                                transaction.data.bank_account.beneficiary_name
+                                transaction?.data?.bank_account
+                                  ?.beneficiary_name
                               }}</span>
                             </p>
 
                             <div class="hidden group-hover:block">
                               Transaction Id:
                               <span class="font-semibold">{{
-                                transaction.data.issuing_transaction_id
+                                transaction?.data?.issuing_transaction_id
                               }}</span>
                             </div>
                           </td>
@@ -381,14 +381,14 @@
                           >
                             {{
                               new Date(
-                                transaction.created_at * 1000
+                                transaction?.created_at * 1000
                               ).toLocaleString()
                             }}
                           </td>
                           <td
                             class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
                           >
-                            €{{ transaction.amount }}
+                            €{{ transaction?.amount }}
                           </td>
                         </tr>
                       </tbody>
@@ -404,17 +404,39 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
-import { useSingleInvoiceStore } from '@/store/invoices/invoice'
-const { getInvoice, getById } = useSingleInvoiceStore()
+import { InvoiceAdd } from '@/store/invoices/index'
+import { TransactionList } from '@/store/invoices/transactions'
+
+const getById = async (id: string) => {
+  const response: InvoiceAdd = await $fetch(`/api/invoice/${id}`)
+  const IssuingId = response.issuing_id
+  if (IssuingId) {
+    await fetchTransactions(IssuingId)
+  }
+  invoice.value = response
+  isLoading.value = false
+}
+
+const fetchTransactions = async (id: string) => {
+  const response: TransactionList = await $fetch(
+    `/api/invoice/${id}/transactions`
+  )
+
+  transactions.value = response
+}
+
+const isLoading = ref(true)
+const invoice = ref<InvoiceAdd>({} as InvoiceAdd)
+const transactions = ref<TransactionList>({
+  transactions: [],
+})
 const route = useRoute()
 const invoiceId: string | any = route?.params?.id
-getById(invoiceId)
 
-const invoice = computed(() => getInvoice?.singleInvoice)
-
-const transactions = computed(() => getInvoice.transactions.transactions)
-
-console.log(transactions)
 const router = useRouter()
 const goBack = () => router.back()
+
+onMounted(async () => {
+  await getById(invoiceId)
+})
 </script>

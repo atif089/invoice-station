@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout name="main">
-    <div class="ml-0 2xl:ml-20">
-      <div class="mb-6 flex max-w-screen-2xl items-center justify-between">
+    <div class="mx-auto max-w-screen-2xl">
+      <div class="mb-6 flex items-center justify-between">
         <h1 class="text-xl font-semibold text-gray-800 sm:text-2xl">
           Invoices
         </h1>
@@ -105,7 +105,7 @@
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        ${{
+                        €{{
                           (
                             +invoice?.invoice_data?.cost?.grandTotal || 1000
                           ).toFixed(2)

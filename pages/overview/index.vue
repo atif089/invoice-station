@@ -9,7 +9,7 @@
             <div class="flex-shrink-0">
               <span
                 class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl"
-                >$45,385</span
+                >€45,385</span
               >
               <h3 class="text-base font-normal text-gray-500">
                 Earned this month
@@ -457,8 +457,8 @@
                       class="apexcharts-text apexcharts-yaxis-label"
                       style="font-family: Inter, sans-serif"
                     >
-                      <tspan id="SvgjsTspan1418">$6600</tspan>
-                      <title>$6600</title>
+                      <tspan id="SvgjsTspan1418">€6600</tspan>
+                      <title>€6600</title>
                     </text>
                     <text
                       id="SvgjsText1419"
@@ -473,8 +473,8 @@
                       class="apexcharts-text apexcharts-yaxis-label"
                       style="font-family: Inter, sans-serif"
                     >
-                      <tspan id="SvgjsTspan1420">$6500</tspan>
-                      <title>$6500</title>
+                      <tspan id="SvgjsTspan1420">€6500</tspan>
+                      <title>€6500</title>
                     </text>
                     <text
                       id="SvgjsText1421"
@@ -489,8 +489,8 @@
                       class="apexcharts-text apexcharts-yaxis-label"
                       style="font-family: Inter, sans-serif"
                     >
-                      <tspan id="SvgjsTspan1422">$6400</tspan>
-                      <title>$6400</title>
+                      <tspan id="SvgjsTspan1422">€6400</tspan>
+                      <title>€6400</title>
                     </text>
                     <text
                       id="SvgjsText1423"
@@ -505,8 +505,8 @@
                       class="apexcharts-text apexcharts-yaxis-label"
                       style="font-family: Inter, sans-serif"
                     >
-                      <tspan id="SvgjsTspan1424">$6300</tspan>
-                      <title>$6300</title>
+                      <tspan id="SvgjsTspan1424">€6300</tspan>
+                      <title>€6300</title>
                     </text>
                     <text
                       id="SvgjsText1425"
@@ -521,8 +521,8 @@
                       class="apexcharts-text apexcharts-yaxis-label"
                       style="font-family: Inter, sans-serif"
                     >
-                      <tspan id="SvgjsTspan1426">$6200</tspan>
-                      <title>$6200</title>
+                      <tspan id="SvgjsTspan1426">€6200</tspan>
+                      <title>€6200</title>
                     </text>
                     <text
                       id="SvgjsText1427"
@@ -537,8 +537,8 @@
                       class="apexcharts-text apexcharts-yaxis-label"
                       style="font-family: Inter, sans-serif"
                     >
-                      <tspan id="SvgjsTspan1428">$6100</tspan>
-                      <title>$6100</title>
+                      <tspan id="SvgjsTspan1428">€6100</tspan>
+                      <title>€6100</title>
                     </text>
                     <text
                       id="SvgjsText1429"
@@ -553,8 +553,8 @@
                       class="apexcharts-text apexcharts-yaxis-label"
                       style="font-family: Inter, sans-serif"
                     >
-                      <tspan id="SvgjsTspan1430">$6000</tspan>
-                      <title>$6000</title>
+                      <tspan id="SvgjsTspan1430">€6000</tspan>
+                      <title>€6000</title>
                     </text>
                   </g>
                 </g>
@@ -668,7 +668,7 @@
                         <td
                           class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
                         >
-                          $2300
+                          €2300
                         </td>
                       </tr>
                       <tr class="bg-gray-50">
@@ -686,7 +686,7 @@
                         <td
                           class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
                         >
-                          -$670
+                          -€670
                         </td>
                       </tr>
                       <tr>
@@ -704,7 +704,7 @@
                         <td
                           class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
                         >
-                          $234
+                          €234
                         </td>
                       </tr>
                       <tr class="bg-gray-50">
@@ -722,7 +722,7 @@
                         <td
                           class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
                         >
-                          $5000
+                          €5000
                         </td>
                       </tr>
                       <tr>
@@ -740,7 +740,7 @@
                         <td
                           class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
                         >
-                          $2300
+                          €2300
                         </td>
                       </tr>
                       <tr class="bg-gray-50">
@@ -758,7 +758,7 @@
                         <td
                           class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
                         >
-                          $560
+                          €560
                         </td>
                       </tr>
                       <tr>
@@ -776,7 +776,7 @@
                         <td
                           class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
                         >
-                          $1437
+                          €1437
                         </td>
                       </tr>
                     </tbody>
@@ -795,7 +795,7 @@
             <div class="flex-shrink-0">
               <span
                 class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl"
-                >$2,340</span
+                >€2,340</span
               >
               <h3 class="text-base font-normal text-gray-500">
                 Earnings this week
@@ -916,7 +916,7 @@
                   <div
                     class="inline-flex items-center text-base font-semibold text-gray-900"
                   >
-                    $320
+                    €320
                   </div>
                 </div>
               </li>
@@ -940,7 +940,7 @@
                   <div
                     class="inline-flex items-center text-base font-semibold text-gray-900"
                   >
-                    $3467
+                    €3467
                   </div>
                 </div>
               </li>
@@ -964,7 +964,7 @@
                   <div
                     class="inline-flex items-center text-base font-semibold text-gray-900"
                   >
-                    $67
+                    €67
                   </div>
                 </div>
               </li>
@@ -988,7 +988,7 @@
                   <div
                     class="inline-flex items-center text-base font-semibold text-gray-900"
                   >
-                    $2367
+                    €2367
                   </div>
                 </div>
               </li>
@@ -1012,7 +1012,7 @@
                   <div
                     class="inline-flex items-center text-base font-semibold text-gray-900"
                   >
-                    $367
+                    €367
                   </div>
                 </div>
               </li>
