@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="main">
-    <div>
+    <div class="mx-auto max-w-screen-2xl">
       <div class="mb-6 flex items-center justify-between">
         <h1 class="text-xl font-semibold text-gray-800 sm:text-2xl">
           Virtual IBAN Accounts
@@ -25,7 +25,9 @@
           Create New Account
         </button>
       </div>
-      <div class="shadow-xs w-full overflow-hidden rounded-lg">
+      <div
+        class="shadow-xs mx-auto w-full max-w-screen-2xl overflow-hidden rounded-lg"
+      >
         <div class="w-full overflow-x-auto">
           <label
             for="default"

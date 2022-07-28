@@ -1,6 +1,8 @@
 <template>
   <NuxtLayout name="main">
-    <div class="mb-6 flex max-w-screen-2xl items-center justify-between">
+    <div
+      class="mx-auto mb-6 flex max-w-screen-2xl items-center justify-between"
+    >
       <h1 class="text-xl font-semibold text-gray-800 sm:text-2xl">Wallets</h1>
       <NuxtLink
         to="/wallet/create"
@@ -50,7 +52,7 @@
       </div>
       <div v-else class="shadow-xs w-full overflow-hidden rounded-lg">
         <div class="w-full overflow-x-auto">
-          <table class="whitespace-no-wrap w-full max-w-screen-2xl">
+          <table class="whitespace-no-wrap mx-auto w-full max-w-screen-2xl">
             <thead>
               <tr
                 class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500"

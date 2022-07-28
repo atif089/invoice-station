@@ -117,7 +117,7 @@
                           :class="
                             invoice?.invoice_status === 'paid'
                               ? 'bg-green-200 text-green-700'
-                              : ''
+                              : 'bg-amber-200 text-amber-700'
                           "
                         >
                           {{ invoice?.invoice_status }}

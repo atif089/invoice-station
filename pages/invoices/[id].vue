@@ -242,7 +242,7 @@
                             <td
                               class="whitespace-nowrap p-4 text-base font-normal text-gray-500"
                             >
-                              ${{ item?.cost?.price }}
+                              €{{ item?.cost?.price }}
                             </td>
                             <td
                               class="whitespace-nowrap p-4 text-base font-semibold text-gray-900"
@@ -257,7 +257,7 @@
                             <td
                               class="whitespace-nowrap p-4 text-base font-semibold"
                             >
-                              ${{ item?.cost?.total }}
+                              €{{ item?.cost?.total }}
                             </td>
                           </tr>
                         </tbody>
@@ -272,7 +272,7 @@
                     Subtotal
                   </div>
                   <div class="text-base font-medium text-gray-900">
-                    ${{ invoice?.invoice_data?.cost?.subTotal }}
+                    €{{ invoice?.invoice_data?.cost?.subTotal }}
                   </div>
                 </div>
                 <div class="flex justify-between">
@@ -286,7 +286,7 @@
                     Discount
                   </div>
                   <div class="text-base font-medium text-gray-900">
-                    ${{ invoice?.invoice_data?.cost?.discounts }}
+                    €{{ invoice?.invoice_data?.cost?.discounts }}
                   </div>
                 </div>
                 <div class="flex justify-between">
@@ -294,14 +294,18 @@
                     Total
                   </div>
                   <div class="text-base font-bold text-gray-900">
-                    ${{ invoice?.invoice_data?.cost?.grandTotal }}
+                    €{{ invoice?.invoice_data?.cost?.grandTotal }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="w-full rounded-lg bg-white p-4 shadow sm:p-6 lg:my-6 xl:w-auto xl:p-8"
+            v-if="
+              getInvoice.transactionsPending === false &&
+              transactions.length > 0
+            "
+            class="w-full flex-1 rounded-lg bg-white p-4 shadow sm:p-6 lg:my-6 xl:w-auto xl:p-8"
           >
             <div class="mb-4 flex items-center justify-between">
               <div>
@@ -330,7 +334,7 @@
                         <tr>
                           <th
                             scope="col"
-                            class="p-4 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                            class="p-4 text-left text-xs font-medium uppercase tracking-wider text-gray-500 xl:w-[470px]"
                           >
                             Transaction
                           </th>
@@ -349,130 +353,42 @@
                         </tr>
                       </thead>
                       <tbody class="bg-white">
-                        <tr>
+                        <tr
+                          v-for="(transaction, index) in transactions"
+                          :Key="transaction?.id"
+                          :class="{ 'bg-gray-50': index % 2 === 0 }"
+                          class="h-[80px] cursor-pointer transition-all"
+                        >
                           <td
-                            class="whitespace-nowrap p-4 text-sm font-normal text-gray-900"
+                            class="rounded-left group whitespace-nowrap rounded-lg p-4 text-sm font-normal text-gray-900"
                           >
-                            Payment from
-                            <span class="font-semibold">Bonnie Green</span>
+                            <p class="">
+                              Payment Deposited to
+                              <span class="font-semibold">{{
+                                transaction.data.bank_account.beneficiary_name
+                              }}</span>
+                            </p>
+
+                            <div class="hidden group-hover:block">
+                              Transaction Id:
+                              <span class="font-semibold">{{
+                                transaction.data.issuing_transaction_id
+                              }}</span>
+                            </div>
                           </td>
                           <td
                             class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
                           >
-                            Apr 23 ,2021
+                            {{
+                              new Date(
+                                transaction.created_at * 1000
+                              ).toLocaleString()
+                            }}
                           </td>
                           <td
                             class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
                           >
-                            $2300
-                          </td>
-                        </tr>
-                        <tr class="bg-gray-50">
-                          <td
-                            class="rounded-left whitespace-nowrap rounded-lg p-4 text-sm font-normal text-gray-900"
-                          >
-                            Payment refund to
-                            <span class="font-semibold">#00910</span>
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
-                          >
-                            Apr 23 ,2021
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
-                          >
-                            -$670
-                          </td>
-                        </tr>
-                        <tr>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-normal text-gray-900"
-                          >
-                            Payment failed from
-                            <span class="font-semibold">#087651</span>
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
-                          >
-                            Apr 18 ,2021
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
-                          >
-                            $234
-                          </td>
-                        </tr>
-                        <tr class="bg-gray-50">
-                          <td
-                            class="rounded-left whitespace-nowrap rounded-lg p-4 text-sm font-normal text-gray-900"
-                          >
-                            Payment from
-                            <span class="font-semibold">Lana Byrd</span>
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
-                          >
-                            Apr 15 ,2021
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
-                          >
-                            $5000
-                          </td>
-                        </tr>
-                        <tr>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-normal text-gray-900"
-                          >
-                            Payment from
-                            <span class="font-semibold">Jese Leos</span>
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
-                          >
-                            Apr 15 ,2021
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
-                          >
-                            $2300
-                          </td>
-                        </tr>
-                        <tr class="bg-gray-50">
-                          <td
-                            class="rounded-left whitespace-nowrap rounded-lg p-4 text-sm font-normal text-gray-900"
-                          >
-                            Payment from
-                            <span class="font-semibold">THEMESBERG LLC</span>
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
-                          >
-                            Apr 11 ,2021
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
-                          >
-                            $560
-                          </td>
-                        </tr>
-                        <tr>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-normal text-gray-900"
-                          >
-                            Payment from
-                            <span class="font-semibold">Lana Lysle</span>
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-normal text-gray-500"
-                          >
-                            Apr 6 ,2021
-                          </td>
-                          <td
-                            class="whitespace-nowrap p-4 text-sm font-semibold text-gray-900"
-                          >
-                            $1437
+                            €{{ transaction.amount }}
                           </td>
                         </tr>
                       </tbody>
@@ -496,15 +412,9 @@ getById(invoiceId)
 
 const invoice = computed(() => getInvoice?.singleInvoice)
 
-const transactions = async () => {
-  const response = await $fetch(
-    `/api/invoice/${invoice.issuing_id}/transactions`
-  )
-  console.log(response, invoice.issuing_id)
-}
-onMounted(() => {
-  transactions()
-})
+const transactions = computed(() => getInvoice.transactions.transactions)
+
+console.log(transactions)
 const router = useRouter()
 const goBack = () => router.back()
 </script>

@@ -4,11 +4,13 @@ export interface InvoiceState {
   singleInvoice: InvoiceAdd
   loading: boolean
   transactions: []
+  transactionsPending: boolean
 }
 const state = (): InvoiceState => ({
   singleInvoice: {} as InvoiceAdd,
   loading: true,
   transactions: [],
+  transactionsPending: true,
 })
 
 const getters = {
@@ -22,14 +24,23 @@ const actions = {
     // @ts-ignore
     this.loading = pending
     console.log(data)
-    this.fetchTransactions(data.issuing_id)
+    // @ts-ignore
+    const issuingId = this.singleInvoice?.issuing_id
+    console.log(issuingId)
+    this.fetchTransactions(issuingId)
     refresh()
   },
-  fetchTransactions(id) {
-    const { data, pending, refresh } = useFetch(
+  fetchTransactions(id: string) {
+    const { data, refresh, pending } = useFetch(
       `/api/invoice/${id}/transactions`
     )
-    console.log(data)
+    console.error(data.transactions)
+    // @ts-ignore
+    this.transactions = data
+    console.error(this.transactions)
+    // @ts-ignore
+    this.transactionsPending = pending
+    refresh()
   },
 }
 
