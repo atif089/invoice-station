@@ -38,13 +38,17 @@ const actions = {
     } catch (error) {}
   },
   async UpdateProfile(formData: Profile) {
+    console.log(formData)
     try {
       const response = await $fetch('/api/settings', {
         method: 'POST',
         body: formData,
       })
       console.log(response)
-    } catch (error) {}
+    } catch (error) {
+      console.error(error)
+      alert('Something Went Wrong')
+    }
   },
 }
 

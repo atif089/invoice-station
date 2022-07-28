@@ -35,6 +35,8 @@ export default defineEventHandler(async (event) => {
       role: body?.role || oldData.role,
       department: body?.department || oldData.department,
       zip_code: body?.zip_code || oldData.zip_code,
+      access_key: body?.access_key || oldData.access_key,
+      secret_key: body?.secret_key || oldData.secret_key,
     }
     await setDoc(docRef, newData)
   } else {

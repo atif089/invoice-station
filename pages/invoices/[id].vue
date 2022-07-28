@@ -161,7 +161,9 @@
                 </div>
               </div>
               <div>
-                <h1 class="text-center text-lg font-semibold text-gray-900">
+                <h1
+                  class="text-center text-sm font-semibold text-gray-900 md:text-lg"
+                >
                   VIBAN Account No:
                   {{ invoice?.iban }} <br />
                   Issuing Id:

@@ -101,7 +101,11 @@
                 </td>
                 <td class="px-4 py-3 text-xs">
                   <span
-                    class="rounded-full bg-green-100 px-2 py-1 font-semibold leading-tight text-green-700"
+                    class="rounded-full bg-amber-100 px-2 py-1 font-semibold leading-tight text-amber-700"
+                    :class="{
+                      'bg-green-100 text-green-700':
+                        wallet.verification_status === 'verified',
+                    }"
                   >
                     {{ wallet.verification_status }}
                   </span>
@@ -118,5 +122,6 @@
 <script setup lang="ts">
 import { useWalletStore } from '@/store/wallets'
 
-const { getAllWallets } = useWalletStore()
+const { getAllWallets, fetchAllWallets } = useWalletStore()
+fetchAllWallets()
 </script>
